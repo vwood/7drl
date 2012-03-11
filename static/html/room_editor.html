@@ -14,16 +14,13 @@
 	  <div><textarea name="image_url" rows="1" cols="60"></textarea></div>
 	  <div>
 		<select name="exit">
-		  <option value="balls">balls</option>
-		  <option value="balls2">balls2</option>
+		  <option value="None">None</option>
+          {% for room_key in room_keys %}
+		  <option value="{{ room_key }}">{{ room_key }}</option>
+          {% endfor %}
 		</select>
 	  </div>
-	  <div><textarea name="exit_1" rows="1" cols="60"></textarea></div>
-	  <div><textarea name="exit_2" rows="1" cols="60"></textarea></div>
-	  <div><textarea name="exit_3" rows="1" cols="60"></textarea></div>
-	  <div><input type="submit" value="New Post"></div>
-
-	  <input type="hidden" value="{{ thread.link }}" name="thread_name">
+	  <div><input type="submit" value="New Room"></div>
 	</form>
   </div>
 </div>

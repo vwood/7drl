@@ -45,5 +45,6 @@ class GetRoom(BaseHandler):
 class RoomEditor(BaseHandler):
     path = template_path('static/html/room_editor.html')
     def get(self):
-        render_template()
+        all_room_keys = Room.all(keys_only=True).run()
+        render_template({'room_keys' : all_room_keys})
     get = require_admin(get)
