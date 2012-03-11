@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block nav %}
+{% endblock %}
+
+{% block content %}
+{% for room in rooms %}
+{{ room.__key__ }}<br/>
+{% endfor %}
+<div class="create">
+  <form action="/create_room" method="post">
+	<div>title: <textarea name="content" rows="1" cols="40">&nbsp;</textarea></div>
+	<div><input type="submit" value="New Post"></div>
+	<input type="hidden" value="{{ thread.link }}" name="thread_name">
+  </form>
+</div>
+{% endblock %}

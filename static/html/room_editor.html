@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block nav %}
+{% endblock %}
+
+{% block content %}
+<div class="title">
+  <h2>Room Editor</h2>
+</div>
+<div class="createwrap">
+  <div class="create">
+	<form action="/debug" method="post">
+	  <div><textarea name="title" rows="1" cols="60"></textarea></div>
+	  <div><textarea name="image_url" rows="1" cols="60"></textarea></div>
+	  <div>
+		<select name="exit">
+		  <option value="balls">balls</option>
+		  <option value="balls2">balls2</option>
+		</select>
+	  </div>
+	  <div><textarea name="exit_1" rows="1" cols="60"></textarea></div>
+	  <div><textarea name="exit_2" rows="1" cols="60"></textarea></div>
+	  <div><textarea name="exit_3" rows="1" cols="60"></textarea></div>
+	  <div><input type="submit" value="New Post"></div>
+
+	  <input type="hidden" value="{{ thread.link }}" name="thread_name">
+	</form>
+  </div>
+</div>
+{% endblock %}

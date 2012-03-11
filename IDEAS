@@ -1,0 +1,38 @@
+* Player structure
+  * Position
+  * Creation screen
+  	* Just a series of strange rooms...?
+  	* Races (different pictures)
+	  * Rogue == @
+	  * Hydra
+	  * Two headed giant
+
+* Map structure
+  * Editing
+  	* Generation
+  * Drawing to screen
+  * Moving an @ around
+  * Special rooms 
+  	* Stores
+	* Pillar
+	* Sudoku level (sokoban)
+	* Color coded doors + keys?
+  * Room contents
+  	* Corpses
+	* Messages (elebereth)
+
+* Monster structure
+  * Position
+  	* Drawing on map
+  * Kinds
+    * Cthulhu
+    * Bats
+	* Storekeeper
+
+* Item / ability (Same thing???)
+
+* Party structure
+  * Voting on moves
+  * Splitting up the party?
+
+* Cron job to reset somethings 

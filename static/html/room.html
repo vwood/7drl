@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block nav %}
+{% endblock %}
+
+{% block content %}
+<div class="title">
+  <h2>{{ room.title }}</h2>
+</div>
+{% if room.image_url %}
+<img src="{{ room.image_url }}"/>
+{% endif %}
+<div class="exits">
+  {% if room.north %}
+  <a href="/room?name={{ room.north }}">north</a>
+  {% endif %}
+  {% if room.west %}
+  <a href="/room?name={{ room.west }}">west</a>
+  {% endif %}
+  {% if room.south %}
+  <a href="/room?name={{ room.south }}">south</a>
+  {% endif %}
+  {% if room.east %}
+  <a href="/room?name={{ room.east }}">east</a>
+  {% endif %}
+  {% if room.down %}
+  <a href="/room?name={{ room.down }}">down</a>
+  {% endif %}
+</div>
+{% endblock %}
