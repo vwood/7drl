@@ -1,0 +1,4 @@
+cron:
+- description: heartbeat
+  url: /update
+  schedule: every 1 minutes

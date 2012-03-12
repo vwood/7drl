@@ -14,5 +14,9 @@ handlers:
   static_files: static/favicon.ico
   upload: static/favicon.ico
 
+- url: /update
+  script: update.py
+  login: admin
+
 - url: /.*
   script: app.py
