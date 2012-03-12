@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 
+{% block head %}
+<script type="text/javascript" src="js/room_editor.js"> </script>
+{% endblock %}
+
 {% block nav %}
 {% endblock %}
 
@@ -10,17 +14,35 @@
 <div class="createwrap">
   <div class="create">
 	<form action="/debug" method="post">
-	  <div><textarea name="title" rows="1" cols="60"></textarea></div>
-	  <div><textarea name="image_url" rows="1" cols="60"></textarea></div>
-	  <div>
-		<select name="exit">
-		  <option value="None">None</option>
-          {% for room_key in room_keys %}
-		  <option value="{{ room_key }}">{{ room_key }}</option>
-          {% endfor %}
-		</select>
-	  </div>
-	  <div><input type="submit" value="New Room"></div>
+	  <textarea name="title" rows="1" cols="60"></textarea>
+
+	  <table>
+		{% for i in 12345|make_list %}
+		<tr>
+		  {% for j in 1234567|make_list %}
+		  <td>
+			{% if i == "1" or i == "5" or j == "1" or j == "7" %}
+			<img src="/images/wall1.png" onClick="" />
+			{% else %}
+			<img src="/images/floor1.png" onClick="" />
+			{% endif %}
+		  </td>
+		  {% endfor %}
+		</tr>
+		{% endfor %}
+	  </table>
+	  
+	  <input type="hidden" name="tiles" value="{% for i in 123456|make_list %}{% for j in 12345|make_list %}{% if i == 1 or i == 6 or j == 1 or j == 5 %}1{% else %}0{% endif %}{% if i != 6 or j != 5 %},{% endif %}{% endfor %}{% endfor %}"/>
+
+	  <div><textarea name="description" rows="3" cols="60"></textarea></div>
+
+	  <select name="exit">
+		<option value="None">None</option>
+        {% for room_key in room_keys %}
+		<option value="{{ room_key }}">{{ room_key }}</option>
+        {% endfor %}
+	  </select>
+	  <input type="submit" value="submit">
 	</form>
   </div>
 </div>
