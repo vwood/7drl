@@ -1,12 +1,3 @@
-Array.prototype.map = function(fn) {
-    var result = [];
-    var length = this.length;
-    for (i = 0; i < length; i++) {
-        result.push(fn(this[i]));
-    }
-    return result;
-};
-
 var images = ["floor1.png",
               "floor2.png",
               "floor3.png",
@@ -33,12 +24,6 @@ var images = ["floor1.png",
               "cthulhu.png",
               "wand.png"];
 
-var tiles = [[1, 1, 1, 1, 1, 1, 1],
-             [1, 0, 0, 0, 0, 0, 1],
-             [1, 0, 0, 0, 0, 0, 1],
-             [1, 0, 0, 0, 0, 0, 1],
-             [1, 1, 1, 1, 1, 1, 1]];
-
 function update_tile_image(x, y) {
     document.getElementsByName(x+"_"+y)[0].src = images[tiles[x][y]];
 }
@@ -59,4 +44,10 @@ function on_image_click(name) {
     }
 
     update_tile_image(x, y);
+}
+
+for (i = 0; i < tiles.length; i++) {
+    for (j = 0; j < tiles[i].length; j++) {
+        update_tile_image(i, j);
+    }
 }

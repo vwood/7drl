@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block nav %}
+{% endblock %}
+
+{% block content %}
+<div class="title">
+  <h2>Simple Room Viewer</h2>
+</div>
+<table>
+  {% for y in 12345|make_list %}
+  <tr>
+	{% for x in 1234567|make_list %}
+	<td>
+	  {% if y == "1" or y == "5" or x == "1" or x == "7" %}
+	  <img src="/images/wall1.png" name="{{ x }}_{{ y }}" />
+	  {% else %}
+	  <img src="/images/floor1.png" name="{{ x }}_{{ y }}" />
+	  {% endif %}
+	</td>
+	{% endfor %}
+  </tr>
+  {% endfor %}
+</table>
+
+<script type="text/javascript">
+  var tiles = [ {% for row in tiles %} [ {% row | join:", " %} ] {% endfor %} ];
+</script>
+<script type="text/javascript" src="js/simple_room.js"> </script>
+{% endblock %}
