@@ -21,7 +21,7 @@ from debug import *
 
 class Play(BaseHandler):
     def get(self):
-        render_template('static/html/play.html')
+        self.render_template('static/html/play.html')
     get = require_login(get)
 
 class Index(BaseHandler):
