@@ -6,18 +6,25 @@ import Image
 import cairo
 
 output_directory = "static/images/"
-text_images = {'wall': ('#', 'grey'),
+text_images = {'wall1': ('#', 'grey'),
+               'wall2': ('#', 'darkgrey'),
+               'wall3': ('#', 'brown'),
+               'wall4': ('#', 'red'),
                'door': ('+', 'brown'),
                'opendoor': ('\'', 'brown'),
-               'floor': ('.', 'lightgrey'),
+               'floor1': ('.', 'lightgrey'),
                'floor2': ('.', 'brown'),
+               'floor3': ('.', 'darkgrey'),
+               'floor4': ('.', 'red'),
                'stairs': ('>', 'grey'),
                'player': ('@', 'black'),
                'shopkeeper': ('S', 'darkblue'),
                'janitor': ('J', 'brown'),
+               'bard': (unichr(223), 'goldenrod'),
                'goblin': ('g', 'green'),
                'cthulhu': (unichr(199), 'green'),
                'water': ('~', 'blue'),
+               'lava': ('~', 'red'),
                'wand': ('/', 'brown')}
 
 line_images = {'chest': ([(0.2,0.8), (0.2,0.5), (0.8,0.5),
