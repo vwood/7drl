@@ -5,24 +5,42 @@ import ImageDraw
 import Image
 
 output_directory = "static/images/"
-images = {'wall': ('#', 'grey'),
-          'door': ('+', 'brown'),
-          'player': ('@', 'black'),
-          'water': ('~', 'blue')}
+text_images = {'wall': ('#', 'grey'),
+               'door': ('+', 'brown'),
+               'opendoor': ('\'', 'brown'),
+               'floor': ('.', 'lightgrey'),
+               'floor2': ('.', 'brown'),
+               'stairs': ('>', 'grey'),
+               'player': ('@', 'black'),
+               'janitor': ('J', 'brown'),
+               'cthulhu': ('C', 'green'),
+               'water': ('~', 'blue'),
+               'wand': ('/', 'brown')}
+
+line_images = {'chest': ([(0.2,0.8), (0.2,0.5), (0.8,0.5),
+                          (0.2,0.5), (0.3,0.3), (0.7,0.3),
+                          (0.8,0.5), (0.8,0.8), (0.2,0.8)], 'brown'),
+               'wizard': ([(0.3,0.2), (0.7,0.8), (0.5,0.5),
+                           (0.3,0.8)], 'purple')}
 
 size = 128
 margin = 32
 width, height = size, size
+line_width = size / 16
 
 font = ImageFont.truetype("Inconsolata.otf", size - margin)
 
-for name, (char, color) in images.iteritems():
+for name, (char, color) in text_images.iteritems():
     image = Image.new('RGBA', (width, height), (0, 0, 0, 0))
     draw = ImageDraw.Draw(image)
     fx, fy = font.getsize(char)
     xoff, yoff = (width - fx) / 2, (height - fy) / 2
-    print char, font.getsize(char), (xoff, yoff)
-
     draw.text((xoff, yoff), char, font=font, fill=color)
     image.save(output_directory + name + '.png', "PNG")
 
+for name, (xys, color) in line_images.iteritems():
+    image = Image.new('RGBA', (width, height), (0, 0, 0, 0))
+    draw = ImageDraw.Draw(image)
+    xys = [(x * width, y * height) for (x,y) in xys]
+    draw.line(xys, width = line_width, fill=color)
+    image.save(output_directory + name + '.png', "PNG")
