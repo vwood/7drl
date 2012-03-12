@@ -1,3 +1,7 @@
+#
+# Main
+#
+
 from google.appengine.dist import use_library
 use_library('django', '1.2')
 
@@ -11,11 +15,9 @@ from google.appengine.ext.webapp.util import run_wsgi_app
 from base import *
 from room import *
 from player import *
+from map import *
 from debug import *
 
-class Map(db.Model):
-    """Currently just references the first room."""
-    start = db.ReferenceProperty(Room)
 
 class Play(BaseHandler):
     def get(self):

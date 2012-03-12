@@ -2,9 +2,13 @@
 # Room Module
 #
 
-from base import *
 import urllib
+from random import randint
+
 from google.appengine.ext import db 
+
+from base import *
+
 
 class Room(db.Model):
     """Models a location (location ~= page)."""
