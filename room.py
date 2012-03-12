@@ -14,7 +14,7 @@ class Room(db.Model):
     """Models a location (location ~= page)."""
     name = db.StringProperty()
     title = db.StringProperty()
-    image_url = db.StringProperty()
+    tiles = db.StringProperty()
     exits = db.ListProperty(db.Key)
 
 def room_key(room_name=None):
