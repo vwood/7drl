@@ -1,6 +1,5 @@
 from base import *
 
 class Debug(BaseHandler):
-    path = template_path('static/html/debug.html')
     def post(self):
-        self.render_template({'debug': self.request})
+        self.render_template('static/html/debug.html', {'debug': self.request})

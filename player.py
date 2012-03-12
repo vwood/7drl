@@ -1,5 +1,7 @@
-from base import *
 from google.appengine.ext import db
+
+from base import *
+from room import *
 
 class Player(db.Model):
     """Models a wonderful player of our humble game."""

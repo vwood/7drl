@@ -4,15 +4,9 @@ from google.appengine.ext import webapp
 from google.appengine.ext.webapp import template
 
 class BaseHandler(webapp.RequestHandler):
-    path = template_path('static/html/error.html')
-    notfound_path = template_path('static/html/error.html')
-    def render_template(self, values={}):
+    def render_template(self, path = 'static/html/error.html', values={}):
+        path = os.path.join(os.path.dirname(__file__), path)
         self.response.out.write(template.render(path, values))
-    def render_notfound_template(self, values={}):
-        self.response.out.write(template.render(notfound_path, values))
-
-def template_path(path):
-    return os.path.join(os.path.dirname(__file__), path)
 
 def require_admin(fn):
     "'Decorate' (because of python 2.5) a method to require an admin login"

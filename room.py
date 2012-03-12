@@ -28,22 +28,19 @@ class CreateRoom(BaseHandler):
     post = require_admin(post)
 
 class GetRoom(BaseHandler):
-    path = template_path('static/html/room.html')
-    notfound_path = template_path('static/html/room_notfound.html')
     def get(self):
         room_name = self.request.get('name')
         room = Room.gql("WHERE link = :1", room_name).get()
 
         if room is None:
-            render_notfound_template()
+            self.render_template('static/html/room_notfound.html')
         else:
             values = {'room': room, 'user': user}
-            render_template(values)
+            self.render_template('static/html/room.html', values)
     get = require_login(get)
 
 class RoomEditor(BaseHandler):
-    path = template_path('static/html/room_editor.html')
     def get(self):
         all_room_keys = Room.all(keys_only=True).run()
-        render_template({'room_keys' : all_room_keys})
+        self.render_template('static/html/room_editor.html', {'room_keys' : all_room_keys})
     get = require_admin(get)
