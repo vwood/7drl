@@ -3,6 +3,7 @@ from PIL import *
 import ImageFont
 import ImageDraw
 import Image
+import cairo
 
 output_directory = "static/images/"
 text_images = {'wall': ('#', 'grey'),
@@ -12,8 +13,10 @@ text_images = {'wall': ('#', 'grey'),
                'floor2': ('.', 'brown'),
                'stairs': ('>', 'grey'),
                'player': ('@', 'black'),
+               'shopkeeper': ('S', 'darkblue'),
                'janitor': ('J', 'brown'),
-               'cthulhu': ('C', 'green'),
+               'goblin': ('g', 'green'),
+               'cthulhu': (unichr(199), 'green'),
                'water': ('~', 'blue'),
                'wand': ('/', 'brown')}
 
@@ -21,7 +24,7 @@ line_images = {'chest': ([(0.2,0.8), (0.2,0.5), (0.8,0.5),
                           (0.2,0.5), (0.3,0.3), (0.7,0.3),
                           (0.8,0.5), (0.8,0.8), (0.2,0.8)], 'brown'),
                'wizard': ([(0.3,0.2), (0.7,0.8), (0.5,0.5),
-                           (0.3,0.8)], 'purple')}
+                           (0.3,0.8), (0.5,0.5)], 'purple')}
 
 size = 128
 margin = 32
