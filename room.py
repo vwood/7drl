@@ -27,7 +27,6 @@ class CreateRoom(BaseHandler):
         self.redirect('/room?' + urllib.urlencode({'name': thread_name}))
     post = require_admin(post)
 
-# TODO: Decorator for this...
 class GetRoom(BaseHandler):
     path = template_path('static/html/room.html')
     notfound_path = template_path('static/html/room_notfound.html')
