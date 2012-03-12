@@ -1,3 +1,4 @@
+
 import os
 from PIL import *
 import ImageFont
@@ -10,16 +11,21 @@ text_images = {'wall1': ('#', 'grey'),
                'wall2': ('#', 'darkgrey'),
                'wall3': ('#', 'brown'),
                'wall4': ('#', 'red'),
+               'wall5': ('#', 'forestgreen'),
                'door': ('+', 'brown'),
                'opendoor': ('\'', 'brown'),
                'floor1': ('.', 'lightgrey'),
                'floor2': ('.', 'brown'),
                'floor3': ('.', 'darkgrey'),
                'floor4': ('.', 'red'),
+               'floor5': ('.', 'forestgreen'),
                'stairs': ('>', 'grey'),
+               'corpse': (unichr(216), 'darkred'),
+               'catdog': (unichr(162), 'orange'),
                'player': ('@', 'black'),
                'shopkeeper': ('S', 'darkblue'),
                'janitor': ('J', 'brown'),
+               'dwarf': (unichr(181), 'honeydew'), # I'm hilarious
                'bard': (unichr(223), 'goldenrod'),
                'goblin': ('g', 'green'),
                'cthulhu': (unichr(199), 'green'),
@@ -27,10 +33,7 @@ text_images = {'wall1': ('#', 'grey'),
                'lava': ('~', 'red'),
                'wand': ('/', 'brown')}
 
-line_images = {'chest': ([(0.2,0.8), (0.2,0.5), (0.8,0.5),
-                          (0.2,0.5), (0.3,0.3), (0.7,0.3),
-                          (0.8,0.5), (0.8,0.8), (0.2,0.8)], 'brown'),
-               'wizard': ([(0.3,0.2), (0.7,0.8), (0.5,0.5),
+line_images = {'wizard': ([(0.3,0.2), (0.7,0.8), (0.5,0.5),
                            (0.3,0.8), (0.5,0.5)], 'purple')}
 
 margin = 4
