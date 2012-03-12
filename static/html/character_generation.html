@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block nav %}
+{% endblock %}
+
+{% block content %}
+<div class="title">
+  <h2>Character Generation</h2>
+</div>
+<div class="createwrap">
+  <div class="create">
+	<form action="/debug" method="post">
+	  <div><textarea name="name" rows="1" cols="60"></textarea></div>
+	  <div><img src="/images/player.png" alt="What a handsome fellow."/></div>
+	  <div>
+		<select name="class">
+		  <option value="Rogue">Rogue</option>
+		  <option value="Dinosaur">Dinosaur</option>
+		  <option value="Hippo">Hippopotamus</option>
+		  <option value="None">All Classes</option>
+		  <option value="None">Are Ignored</option>
+          <!-- TODO: Generate these from a list of classes? -->
+        </select>
+	  </div>
+	  <div><input type="submit" value="Onwards!"></div>
+	</form>
+  </div>
+</div>
+{% endblock %}
