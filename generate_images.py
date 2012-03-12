@@ -33,9 +33,9 @@ line_images = {'chest': ([(0.2,0.8), (0.2,0.5), (0.8,0.5),
                'wizard': ([(0.3,0.2), (0.7,0.8), (0.5,0.5),
                            (0.3,0.8), (0.5,0.5)], 'purple')}
 
-size = 96
 margin = 4
-width, height = size, size
+width, height = 64, 96
+size = height
 line_width = size / 16
 
 font = ImageFont.truetype("Inconsolata.otf", size - margin)

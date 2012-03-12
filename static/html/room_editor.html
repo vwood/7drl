@@ -17,14 +17,14 @@
 	  <textarea name="title" rows="1" cols="60"></textarea>
 
 	  <table>
-		{% for i in 12345|make_list %}
+		{% for y in 12345|make_list %}
 		<tr>
-		  {% for j in 1234567|make_list %}
+		  {% for x in 1234567|make_list %}
 		  <td>
-			{% if i == "1" or i == "5" or j == "1" or j == "7" %}
-			<img src="/images/wall1.png" onClick="" />
+			{% if y == "1" or y == "5" or x == "1" or x == "7" %}
+			<img src="/images/wall1.png" name="{{ x }},{{ y }}" onClick="" />
 			{% else %}
-			<img src="/images/floor1.png" onClick="" />
+			<img src="/images/floor1.png" name="{{ x }},{{ y }}" onClick="" />
 			{% endif %}
 		  </td>
 		  {% endfor %}
@@ -32,7 +32,7 @@
 		{% endfor %}
 	  </table>
 	  
-	  <input type="hidden" name="tiles" value="{% for i in 123456|make_list %}{% for j in 12345|make_list %}{% if i == 1 or i == 6 or j == 1 or j == 5 %}1{% else %}0{% endif %}{% if i != 6 or j != 5 %},{% endif %}{% endfor %}{% endfor %}"/>
+	  <input type="hidden" name="tiles" value="{% for y in 12345|make_list %}{% for x in 1234567|make_list %}{% if y == 1 or y == 5 or x == 1 or x == 7 %}1{% else %}0{% endif %}{% if y != 5 or x != 7 %},{% endif %}{% endfor %}{% endfor %}"/>
 
 	  <div><textarea name="description" rows="3" cols="60"></textarea></div>
 
