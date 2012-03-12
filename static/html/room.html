@@ -10,21 +10,11 @@
 {% if room.image_url %}
 <img src="{{ room.image_url }}"/>
 {% endif %}
+{% if room.exits|length > 0 %}
 <div class="exits">
-  {% if room.north %}
-  <a href="/room?name={{ room.north }}">north</a>
-  {% endif %}
-  {% if room.west %}
-  <a href="/room?name={{ room.west }}">west</a>
-  {% endif %}
-  {% if room.south %}
-  <a href="/room?name={{ room.south }}">south</a>
-  {% endif %}
-  {% if room.east %}
-  <a href="/room?name={{ room.east }}">east</a>
-  {% endif %}
-  {% if room.down %}
-  <a href="/room?name={{ room.down }}">down</a>
-  {% endif %}
+  {% for exit in room.exits %}
+  <a href="/room?name={{ exit }}">{{ exit }}</a> <br />
+  {% endfor %}
 </div>
+{% endif %}
 {% endblock %}
