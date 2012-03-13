@@ -38,9 +38,9 @@ class CreatePlayer(BaseHandler):
         player.is_alive = True
         player.location = World.start
         player.put()
-    post = require_user(post)
+    post = require_login(post)
     
 class CharacterGeneration(BaseHandler):
     def get(self):
         self.render_template('static/html/character_generation.html')
-    get = require_user(get)
+    get = require_login(get)

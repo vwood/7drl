@@ -94,7 +94,7 @@ def tile_string_to_arrays(tile_string):
             for row in tile_string.split("|")]
 
 def tile_arrays_to_string(tile_arrays):
-    return "|".join([",".join([str(i) for i in row]))
+    return "|".join([",".join([str(i) for i in row])
                     for row in tile_arrays])
 
 def get_creatures(room):
