@@ -75,6 +75,7 @@ h1, h2 {
 }
 
 .create {
+	color: #fff;
 	display: inline-block;
 	padding: 5px;
 	margin-left: auto;
@@ -89,6 +90,7 @@ h1, h2 {
 }
 
 .room {
+	color: #fff;
 	background-color: #000;
 	margin: 0 auto;
 }
