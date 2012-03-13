@@ -15,21 +15,12 @@ class Room(db.Model):
     name = db.StringProperty()
     title = db.StringProperty()
     tiles = db.StringProperty()
+    freespace = db.ListProperty(db.StringProperty)
     exits = db.ListProperty(db.Key)
 
 def room_key(room_name=None):
     """Builds a datastore key for a Room entity with board_name."""
     return db.Key.from_path('Room', room_name or 'default_room')
-
-class CreateRoom(BaseHandler):
-    def post(self):
-        room_name = self.request.get('title').replace(" ", "_")
-        room = Room()
-        room.title = self.request.get('title')
-        room.exits = []
-        room.put()
-        self.redirect('/room?' + urllib.urlencode({'name': room_name}))
-    post = require_admin(post)
 
 class GetRoom(BaseHandler):
     def get(self):
@@ -55,9 +46,10 @@ class RandomRoom(BaseHandler):
         self.render_template('static/html/simple_room.html', {'tiles' : tiles})
     get = require_admin(get)
 
-def create_room(map):
+def create_room(map, title=None):
     "Create an actual room object for a map."
-    title = generate_title()
+    if title is None:
+        title = generate_title()
     name = title.replace(" ", "_")
     room = Room(parent = map, key_name = name)
     room.name = name
