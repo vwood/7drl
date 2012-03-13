@@ -4,7 +4,6 @@ from PIL import *
 import ImageFont
 import ImageDraw
 import Image
-import cairo
 
 output_directory = "static/images/"
 text_images = {'wall1': ('#', 'grey'),
@@ -19,7 +18,6 @@ text_images = {'wall1': ('#', 'grey'),
                'floor3': ('.', 'darkgrey'),
                'floor4': ('.', 'red'),
                'floor5': ('.', 'forestgreen'),
-               'stairs': ('>', 'grey'),
                'corpse': (unichr(216), 'darkred'),
                'catdog': (unichr(162), 'orange'),
                'player': ('@', 'black'),
@@ -32,6 +30,10 @@ text_images = {'wall1': ('#', 'grey'),
                'water': ('~', 'blue'),
                'lava': ('~', 'red'),
                'wand': ('/', 'brown')}
+
+underlined_text_images = {'stairs': ('>', 'azure'),
+                          'floorexit': ('.', 'azure'),
+                          'doorexit': ('\'', 'azure')}
 
 line_images = {'wizard': ([(0.3,0.2), (0.7,0.8), (0.5,0.5),
                            (0.3,0.8), (0.5,0.5)], 'purple')}
@@ -49,6 +51,16 @@ for name, (char, color) in text_images.iteritems():
     fx, fy = font.getsize(char)
     xoff, yoff = (width - fx) / 2, (height - fy) / 2
     draw.text((xoff, yoff), char, font=font, fill=color)
+    image.save(output_directory + name + '.png', "PNG")
+
+for name, (char, color) in underlined_text_images.iteritems():
+    image = Image.new('RGBA', (width, height), (0, 0, 0, 0))
+    draw = ImageDraw.Draw(image)
+    fx, fy = font.getsize(char)
+    xoff, yoff = (width - fx) / 2, (height - fy) / 2
+    draw.text((xoff, yoff), char, font=font, fill=color)
+    draw.line([(0.2 * width, 0.9 * height),
+               (0.8 * width, 0.9 * height)], width = line_width, fill=color)
     image.save(output_directory + name + '.png', "PNG")
 
 for name, (xys, color) in line_images.iteritems():
