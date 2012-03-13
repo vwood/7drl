@@ -28,7 +28,7 @@ class CreateRoom(BaseHandler):
         room.title = self.request.get('title')
         room.exits = []
         room.put()
-        self.redirect('/room?' + urllib.urlencode({'name': }))
+        self.redirect('/room?' + urllib.urlencode({'name': room_name}))
     post = require_admin(post)
 
 class GetRoom(BaseHandler):
