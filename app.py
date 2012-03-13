@@ -39,7 +39,9 @@ application = webapp.WSGIApplication(
      ('/character_generation', CharacterGeneration),
      ('/room_editor', RoomEditor),
      ('/debug', Debug),
+     ('/random', RandomRoom),
      ('/room', GetRoom)],
+    
     debug=True)
 
 def main():
