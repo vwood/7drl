@@ -1,3 +1,4 @@
+#!/usr/bin/env python2
 
 import os
 from PIL import *
@@ -38,7 +39,7 @@ underlined_text_images = {'stairs': ('>', 'azure'),
 line_images = {'wizard': ([(0.3,0.2), (0.7,0.8), (0.5,0.5),
                            (0.3,0.8), (0.5,0.5)], 'purple')}
 
-margin = 4
+margin = -6
 width, height = 64, 96
 size = height
 line_width = size / 16
