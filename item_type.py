@@ -1,7 +1,4 @@
-from google.appengine.ext import db
-
-from base import *
-
-class ItemType(db.Model):
-    """Models some strange artefact of mystery and power."""
-    name = db.StringProperty()
+item_types = [
+    ("wand of digg", 0),
+    ("wand of dig", 0),
+    ("wand of polymorph", 0)]

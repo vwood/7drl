@@ -6,7 +6,7 @@ from item_type import *
 class Item(db.Model):
     """Models a particular instance of some strange
     artefact of mystery and power."""
-    item_type = db.ReferenceProperty(ItemType)
+    item_type = db.IntegerProperty()
     location = db.ReferenceProperty(None)
     
 def drop(item):
