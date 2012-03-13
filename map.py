@@ -16,7 +16,7 @@ class Map(db.Model):
 def create_map(depth):
     m = Map()
     m.depth = depth
-    m.start = create_room()
+    m.start = create_room(m)
     m.put()
     return m
 
