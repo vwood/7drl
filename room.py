@@ -101,5 +101,14 @@ def tile_arrays_to_string(tile_arrays):
     return "|".join([",".join([str(i) for i in row])
                     for row in tile_arrays])
 
+def free_space_list(tile_arrays):
+    "Returns a list of free spaces in javascript encoded form (x_y)."
+    free_list = []
+    for i, row in enumerate(tile_arrays):
+        for j, cell in enumerate(row):
+            if blocked[cell]:
+                free_list.append(i + "_" + j)
+    return free_list
+
 def get_creatures(room):
     return room.monster_set.get()

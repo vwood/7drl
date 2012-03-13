@@ -28,6 +28,13 @@ images = ["floor1.png",
           "cthulhu.png",
           "wand.png"]
 
+# Is a cell blocked by a tile?
+blocked = [False, False, False, False, False,
+           True, True, True, True, True,
+           True, False, True, True, True,
+           True, True, True, True, True,
+           True, True, True, True, True]
+
 floors = [0, 1, 2, 3, 4]
 walls = [5, 6, 7, 8, 9, 13, 14]
 features = [10, 11, 12]
