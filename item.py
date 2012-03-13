@@ -1,9 +1,12 @@
-from base import *
 from google.appengine.ext import db
 
+from base import *
+from item_type import *
+
 class Item(db.Model):
-    """Models some strange artefact of mystery and power."""
-    name = db.StringProperty()
+    """Models a particular instance of some strange
+    artefact of mystery and power."""
+    item_type = db.ReferenceProperty(ItemType)
     location = db.ReferenceProperty(None)
     
 def drop(item):
