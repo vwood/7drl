@@ -87,21 +87,9 @@ def generate_room():
         result[0][y] = wall
         result[width - 1][y] = wall
 
-    if randint(0, 4) == 0:
-        result[1][1] = wall
-        result[2][1] = wall
-
-    if randint(0, 4) == 0:
-        result[4][1] = wall
-        result[5][1] = wall
-
-    if randint(0, 4) == 0:
-        result[1][3] = wall
-        result[2][3] = wall
-
-    if randint(0, 4) == 0:
-        result[4][3] = wall
-        result[5][3] = wall
+    for coords in [(x,y) for x in [1,2,4,5] for y in [1,3]]:
+        if randint(0, 4) == 0:
+            result[x][y] = wall
 
     return result
 
