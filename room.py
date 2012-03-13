@@ -96,3 +96,6 @@ def tile_string_to_arrays(tile_string):
 def tile_arrays_to_string(tile_arrays):
     return "|".join([",".join([str(i) for i in row]))
                     for row in tile_arrays])
+
+def get_creatures(room):
+    return room.monster_set.get()
