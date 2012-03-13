@@ -14,7 +14,7 @@ class Map(db.Model):
     start = db.ReferenceProperty(Room)
 
 def create_map(depth):
-    m = Map()
+    m = Map(key=db.Key.from_path('Map', depth))
     m.depth = depth
     m.start = create_room(m)
     m.put()

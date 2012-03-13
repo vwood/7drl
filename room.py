@@ -61,7 +61,7 @@ def create_room(map):
     name = title.replace(" ", "_")
     room = Room(parent = map, key_name = name)
     room.name = name
-    room.tiles = generate_room()
+    room.tiles = tile_arrays_to_string(generate_room())
     room.exits = []
     room.put()
     return room
