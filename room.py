@@ -43,7 +43,11 @@ class RoomEditor(BaseHandler):
 class RandomRoom(BaseHandler):
     def get(self):
         tiles = generate_room()
-        self.render_template('static/html/simple_room.html', {'tiles' : tiles, 'title' : generate_title()})
+        title = generate_title()
+        free_space = free_space_list(tiles)
+        items = [15, 16]
+        self.render_template('static/html/simple_room.html',
+                             {'tiles' : tiles, 'title' : title, 'free_space': free_space, 'items': items})
     get = require_admin(get)
 
 def create_room(map, title=None):

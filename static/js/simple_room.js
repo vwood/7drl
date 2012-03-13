@@ -32,6 +32,14 @@ function update_tile_image(x, y) {
 	}
 }
 
+function set_tile_image(name, image) {
+    var result = document.getElementsByName(name);
+	if (result.length > 0) {
+		result[0].src = "/images/" + images[image];
+	}
+}
+
+// Not used - was fun playing around with a map editor
 function on_image_click(name) {
     var coords = name.split("_");
     var x = coords[0];
@@ -50,4 +58,8 @@ for (i = 0; i < tiles.length; i++) {
     for (j = 0; j < tiles[i].length; j++) {
         update_tile_image(i, j);
     }
+}
+
+for (i = 0; i < items.length; i++) {
+    set_tile_image(free_space[i], items[i]);
 }
