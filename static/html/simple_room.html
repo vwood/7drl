@@ -23,6 +23,7 @@
   </tr>
   {% endfor %}
 </table>
+<div class="title">{{ title }}</div>
 
 <script type="text/javascript">
   var tiles = [ {% for row in tiles %} [ {{ row|join:", " }} ] {% if not forloop.last %},{% endif %}{% endfor %} ];
