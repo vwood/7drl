@@ -3,9 +3,12 @@
   * Creation screen
   	* Just a series of strange rooms...?
   	* Races (different pictures)
+      * Skip this choice
 	  * Rogue == @
 	  * Hydra
 	  * Two headed giant
+
+* Chat box?
 
 * Map structure
   * Editing
@@ -24,10 +27,13 @@
 * Monster structure
   * Position
   	* Drawing on map
+  * Pet
   * Kinds
     * Cthulhu
     * Bats
 	* Storekeeper
+    * Janitor 
+      * Resets/generates items around him (cleanup)
 
 * Item / ability (Same thing???)
 
