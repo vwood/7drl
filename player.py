@@ -3,6 +3,7 @@ from google.appengine.ext import db
 
 from base import *
 from room import *
+from map import *
 
 class Player(db.Model):
     """Models a wonderful player of our humble game."""
@@ -36,8 +37,9 @@ class CreatePlayer(BaseHandler):
         player = Player()
         player.user = users.get_current_user()
         player.is_alive = True
-        player.location = World.start
+        player.location = get_map(1).start
         player.put()
+        self.redirect('/room?' + urllib.urlencode({'name': player.location.key()}))
     post = require_login(post)
     
 class CharacterGeneration(BaseHandler):

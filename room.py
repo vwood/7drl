@@ -26,15 +26,15 @@ class CreateRoom(BaseHandler):
         room_name = self.request.get('title').replace(" ", "_")
         room = Room()
         room.title = self.request.get('title')
-        room.image_url = self.request.get('image_url')
+        room.exits = []
         room.put()
-        self.redirect('/room?' + urllib.urlencode({'name': thread_name}))
+        self.redirect('/room?' + urllib.urlencode({'name': }))
     post = require_admin(post)
 
 class GetRoom(BaseHandler):
     def get(self):
         room_name = self.request.get('name')
-        room = Room.gql("WHERE link = :1", room_name).get()
+        room = Room.gql("WHERE name = :1", room_name).get()
 
         if room is None:
             self.render_template('static/html/room_notfound.html')
@@ -54,8 +54,24 @@ class RandomRoom(BaseHandler):
         tiles = generate_room()
         self.render_template('static/html/simple_room.html', {'tiles' : tiles})
     get = require_admin(get)
+
+def create_room(map):
+    "Create an actual room object for a map."
+    title = generate_title()
+    name = title.replace(" ", "_")
+    room = Room(parent = map, key_name = name)
+    room.name = name
+    room.tiles = generate_room()
+    room.exits = []
+    room.put()
+    return room
     
+def generate_title():
+    "Generate the title of the room."
+    return "Default Room"
+
 def generate_room():
+    "Generate the room layout."
     width, height = 7, 5
 
     floor = floors[randint(0, len(floors)-1)]
