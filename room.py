@@ -58,16 +58,16 @@ class RandomRoom(BaseHandler):
 def generate_room():
     width, height = 7, 5
 
-    floor = floors[randint(0, len(floor)-1)]
-    wall = walls[randint(0, len(floor)-1)]
+    floor = floors[randint(0, len(floors)-1)]
+    wall = walls[randint(0, len(walls)-1)]
 
-    result = [[floor for _ in width] for _ in height]
+    result = [[floor for _ in range(height)] for _ in range(width)]
 
-    for x in width:
+    for x in range(width):
         result[x][0] = wall
         result[x][height - 1] = wall
 
-    for y in height:
+    for y in range(height):
         result[0][y] = wall
         result[width - 1][y] = wall
 

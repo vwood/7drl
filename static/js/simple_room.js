@@ -25,12 +25,11 @@ var images = ["floor1.png",
               "wand.png"];
 
 function update_tile_image(x, y) {
-    document.getElementsByName(x+"_"+y)[0].src = images[tiles[x][y]];
-}
-
-function update_tile_value() {
-    tile_string = tiles.join(",");
-    document.getElementsByName(tiles[0].value = );
+	var name = x + "_" + y;
+    var result = document.getElementsByName(name);
+	if (result.length > 0) {
+		result[0].src = "/images/" + images[tiles[x][y]];
+	}
 }
 
 function on_image_click(name) {
@@ -45,6 +44,7 @@ function on_image_click(name) {
 
     update_tile_image(x, y);
 }
+
 
 for (i = 0; i < tiles.length; i++) {
     for (j = 0; j < tiles[i].length; j++) {
