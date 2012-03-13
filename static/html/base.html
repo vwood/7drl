@@ -12,12 +12,14 @@
 		</div>
 		<div class="navbox">
 		  <div class="login">
-			{% if user %}
-			{{ user.nickname }}
-			{% endif %}
+            {{ login|safe }}
 		  </div>
 		  <div class="nav">
-			<a href="{{ root }}index">index</a>
+			<a href="/index">index</a>
+			<a href="/play">play</a>
+			<a href="/room_editor">create room</a>
+			<a href="/character_generation">new character</a>
+			<a href="/random">random room</a>
 			{% block nav %}
 			{% endblock %}
 		  </div>
