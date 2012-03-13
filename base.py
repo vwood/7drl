@@ -6,7 +6,15 @@ from google.appengine.ext.webapp import template
 class BaseHandler(webapp.RequestHandler):
     def render_template(self, path = 'static/html/error.html', values={}):
         path = os.path.join(os.path.dirname(__file__), path)
+        values['login'] = self.get_login()
         self.response.out.write(template.render(path, values))
+
+    def get_login(self):
+        user = users.get_current_user()
+        if user is None:
+            return "<a href=\"%s\">login</a>" % users.create_login_url(self.request.url)
+        else:
+            return user.nickname
 
 def require_admin(fn):
     "'Decorate' (because of python 2.5) a method to require an admin login"
