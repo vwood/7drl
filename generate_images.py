@@ -21,7 +21,7 @@ text_images = {'wall1': ('#', 'grey'),
                'floor5': ('.', 'forestgreen'),
                'corpse': (unichr(216), 'darkred'),
                'catdog': (unichr(162), 'orange'),
-               'player': ('@', 'black'),
+               'player': ('@', 'white'),
                'shopkeeper': ('S', 'darkblue'),
                'janitor': ('J', 'brown'),
                'dwarf': (unichr(181), 'honeydew'), # I'm hilarious
