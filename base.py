@@ -14,7 +14,7 @@ class BaseHandler(webapp.RequestHandler):
         if user is None:
             return "<a href=\"%s\">login</a>" % users.create_login_url(self.request.url)
         else:
-            return user.nickname
+            return "G'day, <strong>" + user.nickname() + "</strong>"
 
 def require_admin(fn):
     "'Decorate' (because of python 2.5) a method to require an admin login"
