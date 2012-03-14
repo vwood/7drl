@@ -4,19 +4,19 @@
 
 from google.appengine.ext import db 
 
-from room import *
+import room
 
 final_depth = 5
 
 class Map(db.Model):
     """Currently just references the first room."""
     depth = db.IntegerProperty()
-    start = db.ReferenceProperty(Room)
+    start = db.ReferenceProperty(room.Room)
 
 def create_map(depth):
     m = Map(key=db.Key.from_path('Map', depth))
     m.depth = depth
-    m.start = create_room(m)
+    m.start = room.create_room(m)
     m.put()
     return m
 

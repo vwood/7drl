@@ -1,8 +1,8 @@
 from google.appengine.ext import db
 
-from base import *
+import base
 from item_type import *
-from player import *
+import player
 
 class Item(db.Model):
     """Models a particular instance of some strange
@@ -10,11 +10,11 @@ class Item(db.Model):
     item_type = db.IntegerProperty()
     location = db.ReferenceProperty(None)
     
-class Use(BaseHandler):
+class Use(base.BaseHandler):
     """Handles the usage of items"""
     def post(self):
         # check player has item
-        player = get_player()
+        player = player.get_player()
         item = Item.get(self.request.get_by_key_name('item'))
         if item.location != player:
             self.error(400)
@@ -26,7 +26,7 @@ class Use(BaseHandler):
             # Spellapedia (learn a random spell?)
         else:
             pass
-    post = require_player(post)
+    post = base.require_player(post)
 
     
 def drop(item):

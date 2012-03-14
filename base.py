@@ -3,6 +3,8 @@ from google.appengine.api import users
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp import template
 
+
+
 class BaseHandler(webapp.RequestHandler):
     def render_template(self, path = 'static/html/error.html', values={}):
         path = os.path.join(os.path.dirname(__file__), path)
@@ -42,12 +44,10 @@ def require_player(fn):
         user = users.get_current_user()
         if user is None:
             self.redirect(users.create_login_url(self.request.url))
-        elif get_player(user) is None:
+        elif player.get_player(user) is None:
             self.redirect("/create_player")
         else:
             fn(self)
     return decorated_fn
 
-
-# Avoid circular imports
-from player import *
+import player

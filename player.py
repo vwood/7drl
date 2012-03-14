@@ -1,9 +1,9 @@
 from google.appengine.api import users
 from google.appengine.ext import db
 
-from base import *
-from room import *
-from map import *
+import base
+import map
+import room
 
 # TODO: perhaps user should be the parent
 
@@ -11,7 +11,7 @@ class Player(db.Model):
     """Models a wonderful player of our humble game."""
     name = db.StringProperty()
     user = db.UserProperty()
-    location = db.ReferenceProperty(Room)
+    location = db.ReferenceProperty(room.Room)
     health = db.IntegerProperty()
     score = db.IntegerProperty()
     is_alive = db.BooleanProperty()
@@ -22,7 +22,7 @@ def get_player(user = None):
         user = users.get_current_user()
     return Player.gql("WHERE user = :1", user).get()
     
-class Move(BaseHandler):
+class Move(base.BaseHandler):
     def post(self):
         player = get_player()
         try:
@@ -34,9 +34,9 @@ class Move(BaseHandler):
             self.error(400)
         player.location = exits[target_exit]
         player.put()
-    post = require_player(post)
+    post = base.require_player(post)
 
-class CreatePlayer(BaseHandler):
+class CreatePlayer(base.BaseHandler):
     def post(self):
         player = Player()
         player.user = users.get_current_user()
@@ -44,9 +44,9 @@ class CreatePlayer(BaseHandler):
         player.location = get_map(1).start
         player.put()
         self.redirect('/room?' + urllib.urlencode({'name': player.location.name}))
-    post = require_login(post)
+    post = base.require_login(post)
     
-class CharacterGeneration(BaseHandler):
+class CharacterGeneration(base.BaseHandler):
     def get(self):
         self.render_template('static/html/character_generation.html')
-    get = require_login(get)
+    get = base.require_login(get)

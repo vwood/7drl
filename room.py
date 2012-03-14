@@ -3,14 +3,13 @@
 #
 
 import urllib
-from random import randint
-
-from random import shuffle
+from random import randint, shuffle
 
 from google.appengine.ext import db 
 
-from base import *
-from tiles import *
+import images
+import base
+import player
 
 class Room(db.Model):
     """Models a location (location ~= page)."""
@@ -24,25 +23,28 @@ def room_key(room_name=None):
     """Builds a datastore key for a Room entity with board_name."""
     return db.Key.from_path('Room', room_name or 'default_room')
 
-class GetRoom(BaseHandler):
+class GetRoom(base.BaseHandler):
     def get(self):
         room_name = self.request.get('name')
         room = Room.gql("WHERE name = :1", room_name).get()
+        players = player.Player.gql("WHERE location = :1", room).run()
+
+        items = [tiles.player[0] for _ in players]
 
         if room is None:
             self.render_template('static/html/room_notfound.html')
         else:
-            values = {'room': room, 'tiles': tile_string_to_arrays(room.tiles)}
+            values = {'room': room, 'tiles': tile_string_to_arrays(room.tiles), 'items': items}
             self.render_template('static/html/room.html', values)
-    get = require_player(get)
+    get = base.require_player(get)
 
-class RoomEditor(BaseHandler):
+class RoomEditor(base.BaseHandler):
     def get(self):
         all_room_keys = Room.all(keys_only=True).run()
         self.render_template('static/html/room_editor.html', {'room_keys' : all_room_keys})
-    get = require_admin(get)
+    get = base.require_admin(get)
 
-class RandomRoom(BaseHandler):
+class RandomRoom(base.BaseHandler):
     def get(self):
         tiles = generate_room()
         title = generate_title()
@@ -56,7 +58,7 @@ class RandomRoom(BaseHandler):
                               'free_space': free_space,
                               'items': items,
                               'exits': exits})
-    get = require_admin(get)
+    get = base.require_admin(get)
 
 def create_room(map, title=None):
     "Create an actual room object for a map."
