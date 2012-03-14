@@ -34,9 +34,9 @@ text_images = {'blank': (' ', 'black'),
                'wand': ('/', 'brown'),
                'kobold_baby': ('k', 'brown')}
 
-underlined_text_images = {'stairs': ('>', 'azure'),
-                          'floorexit': ('.', 'azure'),
-                          'doorexit': ('\'', 'azure')}
+underlined_text_images = {'stairs': ('>', '#0077cc'), # Default link color in chrome
+                          'floorexit': ('.', '#0077cc'),
+                          'doorexit': ('\'', '#0077cc')}
 
 line_images = {'wizard': ([(0.3,0.2), (0.7,0.8), (0.5,0.5),
                            (0.3,0.8), (0.5,0.5)], 'purple')}
