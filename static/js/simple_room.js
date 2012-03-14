@@ -22,7 +22,8 @@ var images = ["floor1.png",
               "wizard.png",
               "bard.png",
               "cthulhu.png",
-              "wand.png"];
+              "wand.png",
+              "kobold_baby.png"];
 
 function update_tile_image(x, y) {
 	var name = x + "_" + y;
