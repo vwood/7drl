@@ -63,3 +63,12 @@ for (i = 0; i < tiles.length; i++) {
 for (i = 0; i < items.length; i++) {
     set_tile_image(free_space[i], items[i]);
 }
+
+var exit_xys = ["0_2", "3_0", "6_2", "3_4", "3_2"];
+var exit_images = [11, 11, 11, 11, 12];
+
+for (i = 0; i < exits.length; i++) {
+    if (exits[i] != "None") {
+        set_tile_image(exit_xys[i], exit_images[i]);
+    }
+}
