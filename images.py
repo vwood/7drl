@@ -37,7 +37,7 @@ blocked = [False, False, False, False, False,
            True, False, True, True, True,
            True, True, True, True, True,
            True, True, True, True, True, 
-           False]
+           True]
 
 floors = [0, 1, 2, 3, 4]
 walls = [5, 6, 7, 8, 9, 13, 14]

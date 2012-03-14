@@ -85,8 +85,8 @@ def generate_room():
     "Generate the room layout."
     width, height = 7, 5
 
-    floor = floors[randint(0, len(floors)-1)]
-    wall = walls[randint(0, len(walls)-1)]
+    floor = images.floors[randint(0, len(images.floors)-1)]
+    wall = images.walls[randint(0, len(images.walls)-1)]
 
     result = [[floor for _ in range(height)] for _ in range(width)]
 
