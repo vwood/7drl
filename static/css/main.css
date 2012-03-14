@@ -96,7 +96,18 @@ h1, h2 {
 }
 
 .sidepanel {
+	float: right;
 	color: #fff;
 	background-color: #000;
 	margin: 0 auto;
+}
+
+.healthbar {
+	text-align: right;
+	color:  #f00;
+}
+
+.xpbar {
+	text-align: right;
+	color:  #00f;
 }

@@ -12,6 +12,8 @@ class Player(db.Model):
     name = db.StringProperty()
     user = db.UserProperty()
     location = db.ReferenceProperty(Room)
+    health = db.IntegerProperty()
+    score = db.IntegerProperty()
     is_alive = db.BooleanProperty()
     
 def get_player(user = None):

@@ -7,9 +7,30 @@
 <div class="title">
   <h2>{{ room.title }}</h2>
 </div>
-{% if room.image_url %}
-<img src="{{ room.image_url }}"/>
-{% endif %}
+
+<div class="mainpanel">
+  <div class="sidepanel">
+	<h3>{{ player.name }}</h3>
+	<img src="/images/player.png"/>
+	<h4>Health: <a class="healthbar">{{ player.health }}</a></h4>
+	<h4>Xp: <a class="xpbar">{{ player.score }}</a></h4>
+  </div>
+
+  <table class="room">
+	{% for y in 12345|make_list %}
+	<tr>
+	  {% for x in 1234567|make_list %}
+	  <td>
+		<a name="{{ x|add:"-1" }}_{{ y|add:"-1"}}_exit">
+		  <img src="/images/blank.png" name="{{ x|add:"-1" }}_{{ y|add:"-1" }}" />
+		</a>
+	  </td>
+	  {% endfor %}
+	</tr>
+	{% endfor %}
+  </table>
+</div>
+
 {% if room.exits|length > 0 %}
 <div class="exits">
   {% for exit in room.exits %}
@@ -18,10 +39,12 @@
 </div>
 {% endif %}
 
-<div class="sidepanel">
-<h3>{{ player.name }}</h3>
-<img src="/images/player.png"/>
-<h4>Health: some</h4>
-<h4>Xp: little</h4>
-</div>
+<script type="text/javascript">
+  var tiles = [ {% for row in room.tiles %} [ {{ row|join:", " }} ] {% if not forloop.last %},{% endif %}{% endfor %} ];
+  var free_space = [ "{{ free_space|join:"\", \"" }}" ];
+  var items = [ {{ items|join:", " }} ];
+  var exits = [ "{{ exits|join:"\", \"" }}" ];
+</script>
+<script type="text/javascript" src="js/simple_room.js"> </script>
+
 {% endblock %}
