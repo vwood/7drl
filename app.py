@@ -9,19 +9,19 @@ from google.appengine.ext import db
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp.util import run_wsgi_app
 
-from base import *
-from room import *
-from player import *
-from map import *
-from debug import *
+import base
+import room
+import player
+import map
+import debug
 
 
-class Play(BaseHandler):
+class Play(base.BaseHandler):
     def get(self):
         self.render_template('static/html/play.html')
-    get = require_login(get)
+    get = base.require_login(get)
 
-class Index(BaseHandler):
+class Index(base.BaseHandler):
     def get(self):
         rooms = db.GqlQuery("SELECT * FROM Room").fetch(10)
         values = {'rooms': rooms}
@@ -31,12 +31,12 @@ application = webapp.WSGIApplication(
     [('/', Index),
      ('/index', Index),
      ('/play', Play),
-     ('/create_player', CreatePlayer),
-     ('/character_generation', CharacterGeneration),
-     ('/room_editor', RoomEditor),
-     ('/debug', Debug),
-     ('/random', RandomRoom),
-     ('/room', GetRoom)],
+     ('/create_player', player.CreatePlayer),
+     ('/character_generation', player.CharacterGeneration),
+     ('/room_editor', room.RoomEditor),
+     ('/debug', debug.Debug),
+     ('/random', room.RandomRoom),
+     ('/room', room.GetRoom)],
     
     debug=True)
 

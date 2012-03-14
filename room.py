@@ -16,7 +16,7 @@ class Room(db.Model):
     name = db.StringProperty()
     title = db.StringProperty()
     tiles = db.StringProperty()
-    freespace = db.ListProperty(str)
+    free_space = db.ListProperty(str)
     exits = db.ListProperty(db.Key)
 
 def room_key(room_name=None):
@@ -29,12 +29,15 @@ class GetRoom(base.BaseHandler):
         room = Room.gql("WHERE name = :1", room_name).get()
         players = player.Player.gql("WHERE location = :1", room).run()
 
-        items = [tiles.player[0] for _ in players]
+        items = [images.player[0] for _ in players]
 
         if room is None:
             self.render_template('static/html/room_notfound.html')
         else:
-            values = {'room': room, 'tiles': tile_string_to_arrays(room.tiles), 'items': items}
+            values = {'room': room,
+                      'tiles': tile_string_to_arrays(room.tiles),
+                      'items': items,
+                      'free_space': room.free_space}
             self.render_template('static/html/room.html', values)
     get = base.require_player(get)
 
@@ -67,7 +70,9 @@ def create_room(map, title=None):
     name = title.replace(" ", "_")
     room = Room(parent = map, key_name = name)
     room.name = name
-    room.tiles = tile_arrays_to_string(generate_room())
+    tiles = generate_room()
+    room.tiles = tile_arrays_to_string(tiles)
+    room.free_space = free_space_list(tiles)
     room.exits = []
     room.put()
     return room
