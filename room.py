@@ -32,7 +32,7 @@ class GetRoom(BaseHandler):
         else:
             values = {'room': room, 'user': user}
             self.render_template('static/html/room.html', values)
-    get = require_login(get)
+    get = require_player(get)
 
 class RoomEditor(BaseHandler):
     def get(self):
