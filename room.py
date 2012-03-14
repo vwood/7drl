@@ -30,7 +30,7 @@ class GetRoom(BaseHandler):
         if room is None:
             self.render_template('static/html/room_notfound.html')
         else:
-            values = {'room': room, 'user': user}
+            values = {'room': room}
             self.render_template('static/html/room.html', values)
     get = require_player(get)
 
