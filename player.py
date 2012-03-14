@@ -41,7 +41,7 @@ class CreatePlayer(base.BaseHandler):
         player = Player()
         player.user = users.get_current_user()
         player.is_alive = True
-        player.location = get_map(1).start
+        player.location = map.get_map(1).start
         player.put()
         self.redirect('/room?' + urllib.urlencode({'name': player.location.name}))
     post = base.require_login(post)
