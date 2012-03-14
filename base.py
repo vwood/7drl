@@ -47,3 +47,6 @@ def require_player(fn):
             fn(self)
     return decorated_fn
 
+
+# Avoid circular imports
+from player import *
