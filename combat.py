@@ -42,6 +42,11 @@ def dtire(i):
     d -= dtirev[1]
     return (a, d)
 
+# spells should be self tire + autohit?
+# different kinds of damage:
+#   Pure curse (harder for enemy to hit)
+#   Pure Damage
+
 def round(lst, aa=True, ba=True):
     ahit, bhit = False, False
     if aa and hit(lst[0], lst[1]):
