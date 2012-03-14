@@ -5,6 +5,8 @@ from base import *
 from room import *
 from map import *
 
+# TODO: perhaps user should be the parent
+
 class Player(db.Model):
     """Models a wonderful player of our humble game."""
     name = db.StringProperty()
