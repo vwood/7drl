@@ -30,7 +30,8 @@ text_images = {'wall1': ('#', 'grey'),
                'cthulhu': (unichr(199), 'green'),
                'water': ('~', 'blue'),
                'lava': ('~', 'red'),
-               'wand': ('/', 'brown')}
+               'wand': ('/', 'brown'),
+               'kobold_baby': ('k', 'brown')}
 
 underlined_text_images = {'stairs': ('>', 'azure'),
                           'floorexit': ('.', 'azure'),
