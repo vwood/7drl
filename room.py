@@ -103,7 +103,7 @@ def free_space_list(tile_arrays):
     free_list = []
     for i, row in enumerate(tile_arrays):
         for j, cell in enumerate(row):
-            if blocked[cell]:
+            if not blocked[cell]:
                 free_list.append("%s_%s" %  (i,j))
     return free_list
 
