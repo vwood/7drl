@@ -13,11 +13,13 @@
   <tr>
 	{% for x in 1234567|make_list %}
 	<td>
+      <a href="" name="{{ x|add:"-1" }}_{{ y|add:"-1"}}_exit">
 	  {% if y == "1" or y == "5" or x == "1" or x == "7" %}
 	  <img src="/images/wall1.png" name="{{ x|add:"-1" }}_{{ y|add:"-1" }}" />
 	  {% else %}
 	  <img src="/images/floor1.png" name="{{ x|add:"-1" }}_{{ y|add:"-1" }}" />
 	  {% endif %}
+      </a>
 	</td>
 	{% endfor %}
   </tr>
