@@ -25,3 +25,12 @@ def get_map(depth):
     if m is None:
         return create_map(depth)
     return m
+
+def generate_map_layout():
+    def empty_room():
+        return [None, None, None, None, None]
+    layout = empty_room()
+
+    # TODO: generate a random graph
+    
+    return layout
