@@ -46,9 +46,13 @@ class RandomRoom(BaseHandler):
         title = generate_title()
         free_space = free_space_list(tiles)
         items = [15, 16]
-        exits = [[None,"/random_room"][randint(0,1)] for _ in range(5)]
+        exits = [[None,"/random"][randint(0,1)] for _ in range(5)]
         self.render_template('static/html/simple_room.html',
-                             {'tiles' : tiles, 'title' : title, 'free_space': free_space, 'items': items, 'exits': exits})
+                             {'tiles' : tiles, 
+                              'title' : title,
+                              'free_space': free_space,
+                              'items': items,
+                              'exits': exits})
     get = require_admin(get)
 
 def create_room(map, title=None):
