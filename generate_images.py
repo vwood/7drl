@@ -7,7 +7,8 @@ import ImageDraw
 import Image
 
 output_directory = "static/images/"
-text_images = {'wall1': ('#', 'grey'),
+text_images = {'blank': (' ', 'black'),
+               'wall1': ('#', 'grey'),
                'wall2': ('#', 'darkgrey'),
                'wall3': ('#', 'brown'),
                'wall4': ('#', 'red'),
