@@ -15,7 +15,7 @@ class Room(db.Model):
     name = db.StringProperty()
     title = db.StringProperty()
     tiles = db.StringProperty()
-    freespace = db.ListProperty(db.StringProperty)
+    freespace = db.ListProperty(str)
     exits = db.ListProperty(db.Key)
 
 def room_key(room_name=None):
