@@ -5,6 +5,8 @@
 import urllib
 from random import randint
 
+from random import shuffle
+
 from google.appengine.ext import db 
 
 from base import *
@@ -45,6 +47,7 @@ class RandomRoom(BaseHandler):
         tiles = generate_room()
         title = generate_title()
         free_space = free_space_list(tiles)
+        shuffle(free_space)
         items = [15, 16]
         exits = [[None,"/random"][randint(0,1)] for _ in range(5)]
         self.render_template('static/html/simple_room.html',
@@ -93,6 +96,11 @@ def generate_room():
             result[x][y] = wall
 
     return result
+
+def link_rooms(room_b, room_b):
+    "Join two rooms with exits."
+    # Don't forget to change tiles so people don't sit on the stairs!
+    pass
 
 def tile_string_to_arrays(tile_string):
     return [[int(i) for i in row.split(",")]
