@@ -97,7 +97,7 @@ def generate_room():
 
     return result
 
-def link_rooms(room_b, room_b):
+def link_rooms(room_a, room_b):
     "Join two rooms with exits."
     # Don't forget to change tiles so people don't sit on the stairs!
     pass
