@@ -15,7 +15,8 @@ class Room(db.Model):
     """Models a location (location ~= page)."""
     name = db.StringProperty()
     title = db.StringProperty()
-    tiles = db.StringProperty()
+    tiles = db.ListProperty(str)
+    width = db.IntegerProperty()
     free_space = db.ListProperty(str)
     exits = db.ListProperty(db.Key)
 
@@ -35,7 +36,6 @@ class GetRoom(base.BaseHandler):
             self.render_template('static/html/room_notfound.html')
         else:
             values = {'room': room,
-                      'tiles': tile_string_to_arrays(room.tiles),
                       'items': items,
                       'free_space': room.free_space}
             self.render_template('static/html/room.html', values)
@@ -49,14 +49,15 @@ class RoomEditor(base.BaseHandler):
 
 class RandomRoom(base.BaseHandler):
     def get(self):
-        tiles = generate_room()
+        width, tiles = generate_room()
         title = generate_title()
         free_space = free_space_list(tiles)
         shuffle(free_space)
         items = [15, 16]
         exits = [[None,"/random"][randint(0,1)] for _ in range(5)]
         self.render_template('static/html/simple_room.html',
-                             {'tiles' : tiles, 
+                             {'width': width,
+                              'tiles' : tiles, 
                               'title' : title,
                               'free_space': free_space,
                               'items': items,
@@ -70,8 +71,7 @@ def create_room(map, title=None):
     name = title.replace(" ", "_")
     room = Room(parent = map, key_name = name)
     room.name = name
-    tiles = generate_room()
-    room.tiles = tile_arrays_to_string(tiles)
+    room.width, room.tiles = generate_room()
     room.free_space = free_space_list(tiles)
     room.exits = []
     room.put()
@@ -102,25 +102,19 @@ def generate_room():
         if randint(0, 4) == 0:
             result[x][y] = wall
 
-    return result
+    # Flatten tile array
+    result = [cell for row in result for cell in row]
+    return (width, result)
 
 def link_rooms(room_a, room_b):
     "Join two rooms with exits."
     # Don't forget to change tiles so people don't sit on the stairs!
     pass
 
-def tile_string_to_arrays(tile_string):
-    return [[int(i) for i in row.split(",")]
-            for row in tile_string.split("|")]
-
-def tile_arrays_to_string(tile_arrays):
-    return "|".join([",".join([str(i) for i in row])
-                    for row in tile_arrays])
-
-def free_space_list(tile_arrays):
+def free_space_list(tiles):
     "Returns a list of free spaces in javascript encoded form (x_y)."
     free_list = []
-    for i, row in enumerate(tile_arrays):
+    for i, row in enumerate(tiles):
         for j, cell in enumerate(row):
             if not blocked[cell]:
                 free_list.append("%s_%s" %  (i,j))

@@ -24,6 +24,7 @@ class Use(base.BaseHandler):
             # Book of Faces
             # Tube of You
             # Spellapedia (learn a random spell?)
+            # Something that teleports
         else:
             pass
     post = base.require_player(post)
