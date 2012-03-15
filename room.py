@@ -25,11 +25,11 @@ def room_key(room_name=None):
 
 class GetRoom(base.BaseHandler):
     def get(self):
-        room_name = self.request.get('name')
-        room = Room.gql("WHERE name = :1", room_name).get()
+        user = player.get_player()
+        room = user.location
 
         players = player.Player.gql("WHERE location = :1", room).run()
-        items = [images.player[0] for _ in players]
+        items = list(players)
 
         if room is None:
             self.render_template('static/html/room_notfound.html')
@@ -115,6 +115,7 @@ def free_space_list(tiles):
     for i, cell in enumerate(tiles):
         if not images.blocked[cell]:
             free_list.append(i)
+    shuffle(free_list)
     return free_list
 
 def get_creatures(room):

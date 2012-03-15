@@ -32,7 +32,9 @@ images = ["floor1.png",
           "blank.png",
           "sword1.png",
           "sword2.png",
-          "sword3.png"]
+          "sword3.png",
+          "spaniard.png",
+          "hat_guy.png"]
 
 # Is a cell blocked by a tile?
 blocked = [False, False, False, False, False,
@@ -40,11 +42,11 @@ blocked = [False, False, False, False, False,
            True, False, True, True, True,
            True, True, True, True, True,
            True, True, True, True, True, 
-           True]
+           True, True]
 
 floors = [0, 1, 2, 3, 4]
 walls = [5, 6, 7, 8, 9, 13, 14]
 features = [10, 11, 12]
 items = [24,27,28,29]
-player = [15]
+player = [15, 30, 31]
 creatures = [16, 17, 18, 19, 20, 21, 22, 23, 25]

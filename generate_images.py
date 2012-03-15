@@ -35,7 +35,9 @@ text_images = {'blank': (' ', 'black'),
                'kobold_baby': ('k', 'brown'),
                'sword1': ('(', 'gold'),
                'sword2': ('(', 'azure'),
-               'sword3': ('(', 'silver')}
+               'sword3': ('(', 'silver'),
+               'spaniard': (unichr(209), 'white'),
+               'hat_guy': (unichr(212), 'white')}
 
 underlined_text_images = {'stairs': ('>', '#0077cc'), # Default link color in chrome
                           'floorexit': ('.', '#0077cc'),
