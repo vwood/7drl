@@ -17,6 +17,7 @@ class Player(db.Model):
     health = db.IntegerProperty()
     score = db.IntegerProperty()
     is_alive = db.BooleanProperty()
+    has_moved = db.BooleanProperty()
     
 def get_player(user = None):
     "Gets the player model of a current user."
@@ -41,6 +42,21 @@ class Move(base.BaseHandler):
             self.error(400)
         player.location = exits[target_exit]
         player.put()
+    post = base.require_player(post)
+
+class Attack(base.BaseHandler):
+    # GET to workaround browser limitations and avoid further javascript
+    def get(self):
+        player = get_player()
+        if player.has_moved:
+            self.redirect('/room')
+        target = self.request.get('target'):
+        possible_targets = player.location.monster_set.get() 
+        if target not in possible_targets:        
+            self.error(400)
+        # Perform attack (using combat.py)
+        # Perhaps the attack should be in the heartbeat update
+        # OR - merely check that one move per turn per player
     post = base.require_player(post)
 
 class CreatePlayer(base.BaseHandler):
