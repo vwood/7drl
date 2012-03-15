@@ -25,12 +25,17 @@ def get_player(user = None):
     return Player.gql("WHERE user = :1", user).get()
     
 class Move(base.BaseHandler):
-    def post(self):
+    # TODO: limit to one a turn
+    # GET to workaround browser limitations and avoid further javascript
+    def get(self):
         player = get_player()
         try:
+            # Ensure this operation is idempotent
+            if player.location != self.request.get('current'):
+                self.redirect('/room')
             target_exit = int(self.request.get('exit'))
             exits = player.location.exits
-            if target_exit >= len(exits):
+            if target_exit >= len(exits) or exits[target_exit] is None:
                 self.error(400)
         except:
             self.error(400)
@@ -41,6 +46,7 @@ class Move(base.BaseHandler):
 class CreatePlayer(base.BaseHandler):
     def post(self):
         user = users.get_current_user()
+        # This check is being ignored, why?
         if Player.gql("WHERE user = :1", user).get() is not None:
             self.redirect('/room')
         player = Player()
