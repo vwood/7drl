@@ -34,7 +34,8 @@ text_images = {'blank': (' ', 'black'),
                'wand': ('/', 'brown'),
                'sword1': ('(', 'gold'),
                'sword2': ('(', 'azure'),
-               'sword3': ('(', 'silver')}
+               'sword3': ('(', 'silver'),
+               'tree': ('T', 'green')}
 
 smaller_text_images = {'kobold_baby': ('k', 'brown'),
                        'spaniard': (unichr(209), 'white'),
