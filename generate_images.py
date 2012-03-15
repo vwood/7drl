@@ -32,12 +32,13 @@ text_images = {'blank': (' ', 'black'),
                'water': ('~', 'blue'),
                'lava': ('~', 'red'),
                'wand': ('/', 'brown'),
-               'kobold_baby': ('k', 'brown'),
                'sword1': ('(', 'gold'),
                'sword2': ('(', 'azure'),
-               'sword3': ('(', 'silver'),
-               'spaniard': (unichr(209), 'white'),
-               'hat_guy': (unichr(212), 'white')}
+               'sword3': ('(', 'silver')}
+
+smaller_text_images = {'kobold_baby': ('k', 'brown'),
+                       'spaniard': (unichr(209), 'white'),
+                       'hat_guy': (unichr(212), 'white')}
 
 underlined_text_images = {'stairs': ('>', '#0077cc'), # Default link color in chrome
                           'floorexit': ('.', '#0077cc'),
@@ -59,6 +60,15 @@ for name, (char, color) in text_images.iteritems():
     fx, fy = font.getsize(char)
     xoff, yoff = (width - fx) / 2, (height - fy) / 2
     draw.text((xoff, yoff), char, font=font, fill=color)
+    image.save(output_directory + name + '.png', "PNG")
+
+for name, (char, color) in smaller_text_images.iteritems():
+    font2 = ImageFont.truetype("Inconsolata.otf", size - margin - 10)
+    image = Image.new('RGBA', (width, height), (0, 0, 0, 0))
+    draw = ImageDraw.Draw(image)
+    fx, fy = font2.getsize(char)
+    xoff, yoff = (width - fx) / 2, (height - fy) / 2
+    draw.text((xoff, yoff), char, font=font2, fill=color)
     image.save(output_directory + name + '.png', "PNG")
 
 for name, (char, color) in underlined_text_images.iteritems():

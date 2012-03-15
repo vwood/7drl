@@ -23,7 +23,7 @@ var images = ["floor1.png",
               "bard.png",
               "cthulhu.png",
               "wand.png",
-              "kobold_baby.png"
+              "kobold_baby.png",
 			  "blank.png",
 			  "sword1.png",
 			  "sword2.png",
