@@ -23,7 +23,13 @@ var images = ["floor1.png",
               "bard.png",
               "cthulhu.png",
               "wand.png",
-              "kobold_baby.png"];
+              "kobold_baby.png"
+			  "blank.png",
+			  "sword1.png",
+			  "sword2.png",
+			  "sword3.png",
+			  "spaniard.png",
+			  "hat_guy.png"];
 
 function update_tile_image(name) {
     var result = document.getElementsByName(name);
