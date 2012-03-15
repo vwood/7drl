@@ -35,8 +35,7 @@ class GetRoom(base.BaseHandler):
             self.render_template('static/html/room_notfound.html')
         else:
             values = {'room': room,
-                      'items': items,
-                      'free_space': room.free_space}
+                      'items': items}
             self.render_template('static/html/room.html', values)
     get = base.require_player(get)
 

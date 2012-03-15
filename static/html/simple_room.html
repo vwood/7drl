@@ -28,8 +28,8 @@
   var width = {{ width }};
   var tiles = {{ tiles }};
   var free_space = {{ free_space }};
-  var items = [ {{ items|join:", " }} ];
-  var exits = [ "{{ exits|join:"\", \"" }}" ];
+  var items = {{ items }};
+  var exits = [ "{{ exits|join:"\", \""}}" ];
 </script>
 <script type="text/javascript" src="js/simple_room.js"> </script>
 {% endblock %}

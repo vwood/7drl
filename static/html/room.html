@@ -21,17 +21,19 @@
   </div>
 
   <table class="room">
-	{% for y in 12345|make_list %}
-	<tr>
-	  {% for x in 1234567|make_list %}
-	  <td>
-		<a name="{{ x|add:"-1" }}_{{ y|add:"-1"}}_exit">
-		  <img src="/images/blank.png" name="{{ x|add:"-1" }}_{{ y|add:"-1" }}" />
-		</a>
-	  </td>
-	  {% endfor %}
-	</tr>
-	{% endfor %}
+  {% for cell in room.tiles %}
+  {% if forloop.counter0|divisibleby:room.width %}
+  <tr>
+  {% endif %}
+  <td>
+    <a name="{{ forloop.counter0 }}_exit">
+	  <img src="/images/blank.png" name="{{ forloop.counter0 }}" />
+    </a>
+  </td>
+  {% if forloop.counter|divisibleby:room.width %}
+  </tr>
+  {% endif %}
+  {% endfor %}
   </table>
 </div>
 
@@ -44,10 +46,11 @@
 {% endif %}
 
 <script type="text/javascript">
-  var tiles = [ {% for row in tiles %} [ {{ row|join:", " }} ] {% if not forloop.last %},{% endif %}{% endfor %} ];
-  var free_space = [ "{{ free_space|join:"\", \"" }}" ];
-  var items = [ {{ items|join:", " }} ];
-  var exits = [ "{{ exits|join:"\", \"" }}" ];
+  var width = {{ room.width }};
+  var tiles = [{{ room.tiles|join:"," }}];
+  var free_space = [{{ room.free_space|join:"," }}];
+  var items = {{ items }};
+  var exits = [ "{{ room.exits|join:"\", \"" }}" ];
 </script>
 <script type="text/javascript" src="js/simple_room.js"> </script>
 
