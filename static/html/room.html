@@ -53,7 +53,7 @@
   var width = {{ room.width }};
   var tiles = [{{ room.tiles|join:"," }}];
   var free_space = [{{ room.free_space|join:"," }}];
-  var items = {{ items }};
+  var items = [ {% for item in items %} {{ item.image }} {% if not forloop.last %}, {% endif %} {% endfor %} ];
   var exits = [ "{{ room.exits|join:"\", \"" }}" ];
 </script>
 <script type="text/javascript" src="js/simple_room.js"> </script>
