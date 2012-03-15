@@ -62,6 +62,6 @@
   var items = [ {% for item in items %} {{ item.image }} {% if not forloop.last %}, {% endif %} {% endfor %} ];
   var exits = [ "{{ room.exits|join:"\", \"" }}" ];
 </script>
-<script type="text/javascript" src="js/simple_room.js"> </script>
+<script type="text/javascript" src="js/room.js"> </script>
 
 {% endblock %}
