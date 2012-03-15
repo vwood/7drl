@@ -123,3 +123,7 @@ h1, h2 {
 	text-align: right;
 	color:  #00f;
 }
+
+.imgalign {
+	vertical-align:middle;
+}
