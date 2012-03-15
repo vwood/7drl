@@ -17,6 +17,7 @@ class Room(db.Model):
     tiles = db.ListProperty(int)
     width = db.IntegerProperty()
     free_space = db.ListProperty(int)
+    messages = db.ListProperty(str)
     exits = db.ListProperty(db.Key)
 
 def room_key(room_name=None):

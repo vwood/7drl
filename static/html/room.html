@@ -22,6 +22,12 @@
 	  <img name="replace_{{ item.image }}" src="/images/blank.png" class="imgalign"/> {{ item.name }}
 	</div>
 	{% endfor %}
+
+	<div>
+	{% for msg in room.messages %}
+    <p>{{ msg }}</p>
+    {% endfor %}
+    </div>
   </div>
 
   <table class="room">
