@@ -27,8 +27,8 @@ class GetRoom(base.BaseHandler):
     def get(self):
         room_name = self.request.get('name')
         room = Room.gql("WHERE name = :1", room_name).get()
-        players = player.Player.gql("WHERE location = :1", room).run()
 
+        players = player.Player.gql("WHERE location = :1", room).run()
         items = [images.player[0] for _ in players]
 
         if room is None:

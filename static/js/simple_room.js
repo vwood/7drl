@@ -84,3 +84,10 @@ for (i = 0; i < exits.length; i++) {
 	    }
     }
 }
+
+for (i = 0; i < images.length; i++) {
+	var result = document.getElementsByName("replace_" + i);
+	for (j = 0; j < result.length; j++) {
+		result[j].src = "/images/" + images[i];
+	}
+}
