@@ -31,8 +31,7 @@ class Move(base.BaseHandler):
     def get(self):
         player = get_player()
         try:
-            # Ensure this operation is idempotent
-            if player.location != self.request.get('current'):
+            if player.has_moved:
                 self.redirect('/room')
             target_exit = int(self.request.get('exit'))
             exits = player.location.exits
@@ -41,6 +40,7 @@ class Move(base.BaseHandler):
         except:
             self.error(400)
         player.location = exits[target_exit]
+        player.has_moved = True
         player.put()
     post = base.require_player(post)
 
