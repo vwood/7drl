@@ -25,11 +25,10 @@ var images = ["floor1.png",
               "wand.png",
               "kobold_baby.png"];
 
-function update_tile_image(x, y) {
-	var name = x + "_" + y;
+function update_tile_image(name) {
     var result = document.getElementsByName(name);
 	if (result.length > 0) {
-		result[0].src = "/images/" + images[tiles[x][y]];
+		result[0].src = "/images/" + images[tiles[name]];
 	}
 }
 
@@ -42,30 +41,38 @@ function set_tile_image(name, image) {
 
 // Not used - was fun playing around with a map editor
 function on_image_click(name) {
-    var coords = name.split("_");
-    var x = coords[0];
-    var y = coords[1];
-
-    tiles[x][y]++;
-    if (tiles[x][y] >= images.length) {
-        tiles[x][y] = 0;
+    tiles[name]++;
+    if (tiles[name] >= images.length) {
+        tiles[name] = 0;
     }
-
-    update_tile_image(x, y);
+    update_tile_image(name);
 }
 
 
 for (i = 0; i < tiles.length; i++) {
-    for (j = 0; j < tiles[i].length; j++) {
-        update_tile_image(i, j);
-    }
+    update_tile_image(i);
 }
 
 for (i = 0; i < items.length; i++) {
     set_tile_image(free_space[i], items[i]);
 }
 
-var exit_xys = ["0_2", "3_0", "6_2", "3_4", "3_2"];
+var height = tiles.length / width;
+
+function xy_to_index(x, y) {
+	return Math.floor(x + y * width);
+}
+
+var mid_x = Math.floor(width / 2);
+var mid_y = Math.floor(height / 2);
+
+var exit_xys = [xy_to_index(0, mid_y),
+				xy_to_index(width - 1, mid_y),
+				xy_to_index(mid_x, 0),
+				xy_to_index(mid_x, height - 1),
+				xy_to_index(mid_x, mid_y)];
+
+
 var exit_images = [11, 11, 11, 11, 12];
 
 for (i = 0; i < exits.length; i++) {

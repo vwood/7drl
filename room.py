@@ -2,7 +2,6 @@
 # Room Module
 #
 
-import urllib
 from random import randint, shuffle
 
 from google.appengine.ext import db 
@@ -15,9 +14,9 @@ class Room(db.Model):
     """Models a location (location ~= page)."""
     name = db.StringProperty()
     title = db.StringProperty()
-    tiles = db.ListProperty(str)
+    tiles = db.ListProperty(int)
     width = db.IntegerProperty()
-    free_space = db.ListProperty(str)
+    free_space = db.ListProperty(int)
     exits = db.ListProperty(db.Key)
 
 def room_key(room_name=None):
@@ -72,7 +71,7 @@ def create_room(map, title=None):
     room = Room(parent = map, key_name = name)
     room.name = name
     room.width, room.tiles = generate_room()
-    room.free_space = free_space_list(tiles)
+    room.free_space = free_space_list(room.tiles)
     room.exits = []
     room.put()
     return room
@@ -88,19 +87,19 @@ def generate_room():
     floor = images.floors[randint(0, len(images.floors)-1)]
     wall = images.walls[randint(0, len(images.walls)-1)]
 
-    result = [[floor for _ in range(height)] for _ in range(width)]
+    result = [[floor for _ in range(width)] for _ in range(height)]
 
     for x in range(width):
-        result[x][0] = wall
-        result[x][height - 1] = wall
+        result[0][x] = wall
+        result[height - 1][x] = wall
 
     for y in range(height):
-        result[0][y] = wall
-        result[width - 1][y] = wall
+        result[y][0] = wall
+        result[y][width - 1] = wall
 
-    for coords in [(x,y) for x in [1,2,4,5] for y in [1,3]]:
+    for x,y in [(x,y) for x in [1,2,4,5] for y in [1,3]]:
         if randint(0, 4) == 0:
-            result[x][y] = wall
+            result[y][x] = wall
 
     # Flatten tile array
     result = [cell for row in result for cell in row]
@@ -114,10 +113,9 @@ def link_rooms(room_a, room_b):
 def free_space_list(tiles):
     "Returns a list of free spaces in javascript encoded form (x_y)."
     free_list = []
-    for i, row in enumerate(tiles):
-        for j, cell in enumerate(row):
-            if not blocked[cell]:
-                free_list.append("%s_%s" %  (i,j))
+    for i, cell in enumerate(tiles):
+        if not images.blocked[cell]:
+            free_list.append(i)
     return free_list
 
 def get_creatures(room):

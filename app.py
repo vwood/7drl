@@ -15,7 +15,6 @@ import player
 import map
 import debug
 
-
 class Play(base.BaseHandler):
     def get(self):
         self.render_template('static/html/play.html')
@@ -37,8 +36,9 @@ application = webapp.WSGIApplication(
      ('/debug', debug.Debug),
      ('/random', room.RandomRoom),
      ('/room', room.GetRoom)],
-    
     debug=True)
+
+webapp.template.register_template_library("common.django_filters")
 
 def main():
     run_wsgi_app(application)

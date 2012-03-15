@@ -34,7 +34,7 @@ def generate_map_layout(map):
         "An empty room structure."
         this_room = create_room(map)
         all_rooms.append(this_room)
-        return room_str = [this_room, None, None, None, None]
+        return [this_room, None, None, None, None]
     def free_exit_count(room):
         "Return the number of free exits we have."
         return room.count(None)
@@ -49,7 +49,6 @@ def generate_map_layout(map):
         "Selects a random room."
         pick = randint(0, len(all_rooms))
         return all_rooms[pick]
-        
     def link_rooms(room_a, room_b):
         "Joins two rooms with exits."
         if free_exit_count(room_a) == 0 or free_exit_count(room_b) == 0:
