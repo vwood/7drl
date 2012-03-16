@@ -63,16 +63,14 @@ class Attack(base.BaseHandler):
 class CreatePlayer(base.BaseHandler):
     def post(self):
         user = users.get_current_user()
-        # This check is being ignored, why?
-        if Player.gql("WHERE user = :1", user).get() is not None:
-            self.redirect('/room')
-        player = Player()
-        player.user = users.get_current_user()
-        player.is_alive = True
-        player.location = map.get_map(1).start
-        player.image = images.player[int(self.request.get('class'))]
-        player.name = self.request.get('name')
-        player.put()
+        if Player.gql("WHERE user = :1", user).get() is None:
+            player = Player()
+            player.user = users.get_current_user()
+            player.is_alive = True
+            player.location = map.get_map(1).start
+            player.image = images.player[int(self.request.get('class'))]
+            player.name = self.request.get('name')
+            player.put()
         self.redirect('/room')
     post = base.require_login(post)
     
