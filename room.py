@@ -67,9 +67,10 @@ class RandomRoom(base.BaseHandler):
 def create_room(map, title=None):
     """Create an actual room object for a map.
     DOES NOT PUT ONTO DATASTORE."""
+    room = Room(parent = map, key_name = None)
     if title is None:
         title = generate_title()
-    room = Room(parent = map, key_name = None)
+    room.title = title
     room.width, room.tiles = generate_room()
     room.free_space = free_space_list(room.tiles)
     room.exits = [-1, -1, -1, -1, -1]
