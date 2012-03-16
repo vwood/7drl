@@ -42,7 +42,7 @@ class Move(base.BaseHandler):
         player.location = exits[target_exit]
         player.has_moved = True
         player.put()
-    post = base.require_player(post)
+    get = base.require_player(get)
 
 class Attack(base.BaseHandler):
     # GET to workaround browser limitations and avoid further javascript
@@ -50,14 +50,14 @@ class Attack(base.BaseHandler):
         player = get_player()
         if player.has_moved:
             self.redirect('/room')
-        target = self.request.get('target'):
+        target = self.request.get('target')
         possible_targets = player.location.monster_set.get() 
         if target not in possible_targets:        
             self.error(400)
         # Perform attack (using combat.py)
         # Perhaps the attack should be in the heartbeat update
         # OR - merely check that one move per turn per player
-    post = base.require_player(post)
+    get = base.require_player(get)
 
 class CreatePlayer(base.BaseHandler):
     def post(self):
