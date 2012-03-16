@@ -18,7 +18,7 @@ class Map(db.Model):
 def create_map(depth):
     m = Map(key=db.Key.from_path('Map', depth))
     m.depth = depth
-    m.start = room.create_room(m)
+    m.start = generate_map_layout(m)
     m.put()
     return m
 
@@ -32,29 +32,29 @@ def generate_map_layout(map):
     all_rooms = []
     def empty_room():
         "An empty room structure."
-        this_room = create_room(map)
+        this_room = [room.create_room(map), None, None, None, None]
         all_rooms.append(this_room)
-        return [this_room, None, None, None, None]
-    def free_exit_count(room):
+        return this_room
+    def free_exit_count(a_room):
         "Return the number of free exits we have."
-        return room.count(None)
-    def pick_exit(room, free=True):
+        return a_room.count(None)
+    def pick_exit(this_room, free=True):
         "Find a free (if free=True) or a filled (if free=False) exit in a room."
         pick = randint(1,4)
-        while (room[pick] != None) == free:
+        while (this_room[pick] != None) == free:
             pick += 1
             pick = ((pick - 1) % 4) + 1
         return pick
     def random_room():
         "Selects a random room."
-        pick = randint(0, len(all_rooms))
+        pick = randint(0, len(all_rooms) - 1)
         return all_rooms[pick]
     def link_rooms(room_a, room_b):
         "Joins two rooms with exits."
         if free_exit_count(room_a) == 0 or free_exit_count(room_b) == 0:
             return False
-        pick_a = pick_free_exit(room_a)
-        pick_b = pick_free_exit(room_b)
+        pick_a = pick_exit(room_a)
+        pick_b = pick_exit(room_b)
         room_a[pick_a] = room_b
         room_b[pick_b] = room_a
         return True
@@ -85,11 +85,11 @@ def generate_map_layout(map):
     if randint(0,1) == 0:
         add_loop()
 
-    for room in all_rooms:
-        for i, room_exit in enumerate(room[1:]):
-            room.exits[i] = len(room.exits_keys)
-            room.exit_keys.append(room_exit)
-            print room_exit
-    for room in all_rooms:
-        room.put()
-    return layout
+    for a_room in all_rooms:
+        for i, room_exit in enumerate(a_room[1:]):
+            if room_exit:
+                a_room[0].exits[i] = len(a_room[0].exit_keys)
+                a_room[0].exit_keys.append(room_exit[0].key())
+        a_room[0].put()
+
+    return layout[0]
