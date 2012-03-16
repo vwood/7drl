@@ -46,6 +46,7 @@ blocked = [False, False, False, False, False, # 0 - 4
            True, True, True, True, True, # 25 - 29
            True, True, True, True] # 30 - 33
 
+# blank = 26
 floors = [0, 1, 2, 3, 4]
 walls = [5, 6, 7, 8, 9, 13, 14, 32]
 features = [10, 11, 12]

@@ -35,6 +35,7 @@ function update_tile_image(name) {
     var result = document.getElementsByName(name);
 	if (result.length > 0) {
 		result[0].src = "/images/" + images[tiles[name]];
+		result[0].title = images[tiles[name]].replace(".png", "").replace("_", " ");
 	}
 }
 
@@ -42,18 +43,9 @@ function set_tile_image(name, image) {
     var result = document.getElementsByName(name);
 	if (result.length > 0) {
 		result[0].src = "/images/" + images[image];
+		result[0].title = images[image].replace(".png", "").replace("_", " ");
 	}
 }
-
-// Not used - was fun playing around with a map editor
-function on_image_click(name) {
-    tiles[name]++;
-    if (tiles[name] >= images.length) {
-        tiles[name] = 0;
-    }
-    update_tile_image(name);
-}
-
 
 for (i = 0; i < tiles.length; i++) {
     update_tile_image(i);

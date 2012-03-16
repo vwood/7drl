@@ -32,6 +32,7 @@ application = webapp.WSGIApplication(
      ('/play', Play),
      ('/create_player', player.CreatePlayer),
      ('/move', player.Move),
+     ('/attack', player.Attack),
      ('/character_generation', player.CharacterGeneration),
      ('/room_editor', room.RoomEditor),
      ('/debug', debug.Debug),
