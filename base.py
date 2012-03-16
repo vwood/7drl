@@ -1,9 +1,8 @@
 import os
+
 from google.appengine.api import users 
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp import template
-
-
 
 class BaseHandler(webapp.RequestHandler):
     def render_template(self, path = 'static/html/error.html', values={}):
