@@ -33,14 +33,15 @@ class Move(base.BaseHandler):
                 self.redirect('/room')
             target_exit = int(self.request.get('exit'))
             exits = player.location.exits 
-            exits = player.location.exits
-            if target_exit >= len(exits) or exits[target_exit] is None:
+            exit_keys = player.location.exit_keys
+            if target_exit >= len(exits) or exits[target_exit] == -1:
                 self.redirect('/room?error="Invalid Exit"')
-            player.location = exits[target_exit]
+            player.location = room.Room.get(exit_keys[exits[target_exit]])
             player.has_moved = True
             player.put()
             self.redirect('/room')
-        except:
+        except Exception as e:
+            print e
             self.error(401)
     get = base.require_player(get)
 

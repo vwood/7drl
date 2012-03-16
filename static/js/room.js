@@ -29,7 +29,8 @@ var images = ["floor1.png",
 			  "sword2.png",
 			  "sword3.png",
 			  "spaniard.png",
-			  "hat_guy.png"];
+			  "hat_guy.png",
+			  "tree.png"];
 
 function update_tile_image(name) {
     var result = document.getElementsByName(name);
@@ -78,7 +79,7 @@ for (i = 0; i < exits.length; i++) {
         set_tile_image(exit_xys[i], exit_images[i]);
         var result = document.getElementsByName(exit_xys[i] + "_exit");
 	    if (result.length > 0) {
-		    result[0].href = '/move?exit=' + exit_keys[exits[i]];
+		    result[0].href = '/move?exit=' + i;
 	    }
     }
 }
