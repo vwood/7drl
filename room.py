@@ -12,13 +12,13 @@ import player
 
 class Room(db.Model):
     """Models a location (location ~= page)."""
-    name = db.StringProperty()
     title = db.StringProperty()
     tiles = db.ListProperty(int)
     width = db.IntegerProperty()
     free_space = db.ListProperty(int)
     messages = db.ListProperty(str)
-    exits = db.ListProperty(db.Key)
+    exits = db.ListProperty(int)
+    exit_keys = db.ListProperty(db.Key)
 
 def room_key(room_name=None):
     """Builds a datastore key for a Room entity with board_name."""
@@ -36,7 +36,8 @@ class GetRoom(base.BaseHandler):
             self.render_template('static/html/room_notfound.html')
         else:
             values = {'room': room,
-                      'items': items}
+                      'items': items,
+                      'error': self.request.get('error')}
             self.render_template('static/html/room.html', values)
     get = base.require_player(get)
 
@@ -64,15 +65,15 @@ class RandomRoom(base.BaseHandler):
     get = base.require_admin(get)
 
 def create_room(map, title=None):
-    "Create an actual room object for a map."
+    """Create an actual room object for a map.
+    DOES NOT PUT ONTO DATASTORE."""
     if title is None:
         title = generate_title()
-    name = title.replace(" ", "_")
-    room = Room(parent = map, key_name = name)
-    room.name = name
+    room = Room(parent = map, key_name = None)
     room.width, room.tiles = generate_room()
     room.free_space = free_space_list(room.tiles)
-    room.exits = []
+    room.exits = [-1, -1, -1, -1, -1]
+    room.exit_keys = []
     room.put()
     return room
     

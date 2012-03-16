@@ -74,11 +74,11 @@ var exit_xys = [xy_to_index(0, mid_y),
 var exit_images = [11, 11, 11, 11, 12];
 
 for (i = 0; i < exits.length; i++) {
-    if (exits[i] != "None") {
+    if (exits[i] != -1) {
         set_tile_image(exit_xys[i], exit_images[i]);
         var result = document.getElementsByName(exit_xys[i] + "_exit");
 	    if (result.length > 0) {
-		    result[0].href = '/move?exit=' + i;
+		    result[0].href = '/move?exit=' + exit_keys[exits[i]];
 	    }
     }
 }

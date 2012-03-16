@@ -87,5 +87,9 @@ def generate_map_layout(map):
 
     for room in all_rooms:
         for i, room_exit in enumerate(room[1:]):
-            room.exits[i] = room_exit
+            room.exits[i] = len(room.exits_keys)
+            room.exit_keys.append(room_exit)
+            print room_exit
+    for room in all_rooms:
+        room.put()
     return layout

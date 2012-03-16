@@ -6,8 +6,6 @@ import map
 import room
 import images
 
-# TODO: perhaps user should be the parent
-
 class Player(db.Model):
     """Models a wonderful player of our humble game."""
     name = db.StringProperty()
@@ -34,14 +32,16 @@ class Move(base.BaseHandler):
             if player.has_moved:
                 self.redirect('/room')
             target_exit = int(self.request.get('exit'))
+            exits = player.location.exits 
             exits = player.location.exits
             if target_exit >= len(exits) or exits[target_exit] is None:
-                self.error(400)
+                self.redirect('/room?error="Invalid Exit"')
+            player.location = exits[target_exit]
+            player.has_moved = True
+            player.put()
+            self.redirect('/room')
         except:
-            self.error(400)
-        player.location = exits[target_exit]
-        player.has_moved = True
-        player.put()
+            self.error(401)
     get = base.require_player(get)
 
 class Attack(base.BaseHandler):

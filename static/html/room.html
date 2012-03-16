@@ -4,6 +4,10 @@
 {% endblock %}
 
 {% block content %}
+{% if error %}
+<h2> {{ error }} </h2>
+{% endif %}
+
 <div class="title">
   <h2>{{ room.title }}</h2>
 </div>
@@ -56,14 +60,6 @@
   </table>
 </div>
 
-{% if room.exits|length > 0 %}
-<div class="exits">
-  {% for exit in room.exits %}
-  <a href="/room?name={{ exit }}">{{ exit }}</a> <br />
-  {% endfor %}
-</div>
-{% endif %}
-
 <script type="text/javascript">
   var target = "";
   var target_img = 26;
@@ -71,7 +67,8 @@
   var tiles = [{{ room.tiles|join:"," }}];
   var free_space = [{{ room.free_space|join:"," }}];
   var items = [ {% for item in items %} {{ item.image }} {% if not forloop.last %}, {% endif %} {% endfor %} ];
-  var exits = [ "{{ room.exits|join:"\", \"" }}" ];
+  var exit_keys = ["{{ room.exit_keys|join:"\", \"" }}"];
+  var exits = [ {{ room.exits|join:"," }} ];
 </script>
 <script type="text/javascript" src="js/room.js"> </script>
 
