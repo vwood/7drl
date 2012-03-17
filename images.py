@@ -57,8 +57,8 @@ wall_names = [["Rocky ", "Cold ", "Rock ", "Jagged "],
               ["Deep ", "Stoney ", "Stone ", "Cyclopean "],
               ["Underground ", "Earthen ", "Clay "],
               ["Bloody ", "Violent ", "Stained ", "Elegiac "],
-              ["Slimy ", "Moist ", "Slippery ", "Noisome "],
-              ["Island ", "Moist ", "Wet ", "Antediluvian "],
+              ["Slimy ", "Damp ", "Slippery ", "Noisome "],
+              ["Island ", "Damp ", "Wet ", "Antediluvian "],
               ["Hellish ", "Blasted ", "Volcanic ", "Unholy "],
               ["Forest ", "Druidic ", "Overgrown ", "Fertile"]]
 
