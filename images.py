@@ -62,7 +62,7 @@ wall_names = [["Rocky ", "Cold ", "Rock ", "Jagged "],
               ["Hellish ", "Blasted ", "Volcanic ", "Unholy "],
               ["Forest ", "Druidic ", "Overgrown ", "Fertile"]]
 
-floor_names = [["Cavern", "Lair"],
+floor_names = [["Cavern", "Lair", "Oubliette"],
                ["Room", "Temple", "Crypt"],
                ["Burrow", "Soil", "Hole"],
                ["Pit", "Temple", "Lair"],
