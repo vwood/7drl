@@ -38,7 +38,7 @@ class Move(base.BaseHandler):
         player = get_player()
         try:
             if player.has_moved:
-                self.redirect('/room')
+                self.redirect('/room?error=You are too tired')
                 return
             target_exit = int(self.request.get('exit'))
             exits = player.location.exits 
@@ -72,7 +72,7 @@ class Attack(base.BaseHandler):
     def get(self):
         player = get_player()
         if player.has_moved:
-            self.redirect('/room?error=Already Moved')
+            self.redirect('/room?error=You are too tired')
             return
         target = self.request.get('target')
         try:
