@@ -11,13 +11,12 @@
   <div class="create">
 	<form action="/create_player" method="post">
 	  <div>Name:<input type="text" name="name" size="16"></textfield></div>
-	  <div><img name="player" src="/images/player.png" alt="What a handsome fellow."/></div>
+	  <div><img name="player" src="/images/Rogue.png" title="What a handsome fellow." alt="Player"/></div>
 	  <div>
 		<select name="class" onchange="document.getElementsByName('player')[0].src=['/images/Rogue.png', '/images/Spaniard.png', '/images/Hat_Guy.png'][value]">
 		  <option value="0">Rogue</option>
 		  <option value="1">Spaniard</option>
 		  <option value="2">Guy with a hat</option>
-          <!-- TODO: Generate these from a list of classes? -->
         </select>
 	  </div>
 	  <div><input type="submit" value="Onwards!"></div>
