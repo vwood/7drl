@@ -83,7 +83,7 @@
   var items = [ {% for item in items %} {{ item.image }} {% if not forloop.last %}, {% endif %} {% endfor %} ];
   var exit_keys = ["{{ room.exit_keys|join:"\", \"" }}"];
   var exits = [ {{ room.exits|join:"," }} ];
-  setTimeout("window.location.href = window.location.href", 20 * 1000);
+  setTimeout("window.location.href = window.location.href", 10 * 1000);
 </script>
 <script type="text/javascript" src="js/room.js"> </script>
 

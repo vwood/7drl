@@ -1,6 +1,6 @@
 cron:
 - description: heartbeat
-  url: /update
+  url: /update3
   schedule: every 1 minutes 
 
 - description: monster regen

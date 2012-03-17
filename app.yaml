@@ -1,4 +1,4 @@
-application: 7drl01
+application: ectofunctor
 version: 1
 runtime: python
 api_version: 1
@@ -23,6 +23,10 @@ handlers:
 
 - url: /update2
   script: update2.py
+  login: admin
+
+- url: /update3
+  script: update3.py
   login: admin
 
 - url: /player_count
