@@ -48,6 +48,11 @@ function set_tile_image(name, image) {
 	}
 }
 
+function set_target(key, image) {
+	target = key;
+	document.getElementsByName('target_img')[0].src = '/images/' + images[image];
+}
+
 for (i = 0; i < tiles.length; i++) {
     update_tile_image(i);
 }
