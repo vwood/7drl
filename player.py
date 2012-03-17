@@ -54,8 +54,7 @@ class Move(base.BaseHandler):
             player.has_moved = True
             player.put()
             self.redirect('/room')
-        except Exception as e:
-            print e
+        except:
             self.error(401)
     get = base.require_player(get)
 
@@ -86,6 +85,8 @@ class CreatePlayer(base.BaseHandler):
             player.name = self.request.get('name')
             player.health = 100
             player.level = 1
+            player.score = 0
+            player.has_won = False
             player.put()
         self.redirect('/room')
     post = base.require_login(post)
