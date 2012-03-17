@@ -35,7 +35,8 @@ class GetRoom(base.BaseHandler):
         if room is None:
             self.render_template('static/html/room_notfound.html')
         else:
-            values = {'room': room,
+            values = {'player': user,
+                      'room': room,
                       'items': items,
                       'error': self.request.get('error')}
             self.render_template('static/html/room.html', values)

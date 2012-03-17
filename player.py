@@ -70,6 +70,7 @@ class CreatePlayer(base.BaseHandler):
             player.location = map.get_map(1).start
             player.image = images.player[int(self.request.get('class'))]
             player.name = self.request.get('name')
+            player.health = 100
             player.put()
         self.redirect('/room')
     post = base.require_login(post)
