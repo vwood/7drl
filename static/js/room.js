@@ -53,6 +53,10 @@ function set_target(key, image) {
 	document.getElementsByName('target_img')[0].src = '/images/' + images[image];
 }
 
+function set_action_href() {
+	document.getElementsByName('action')[0].href = '/attack?target=' + target;
+}
+
 for (i = 0; i < tiles.length; i++) {
     update_tile_image(i);
 }

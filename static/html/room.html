@@ -1,5 +1,8 @@
 {% extends "base.html" %}
 
+{% block head %}
+{% endblock %}
+
 {% block nav %}
 {% endblock %}
 
@@ -27,8 +30,8 @@
 	  <img name="target_img" src="/images/Blank.png" class="imgalign"/> {{ item.name }}
 	</div>
 	<div>
-      <a href="#" onclick="href='/attack?target='+target; return true;">
-      <img src="/images/Attack.png" alt="Attack" title="Attack" class="imgalign">
+      <a href="#" name="action" onclick="set_action_href(); return true;">
+      <img src="/images/Attack.png" alt="Action" title="Action" class="imgalign">
 	  </a>
     </div>
   </div>

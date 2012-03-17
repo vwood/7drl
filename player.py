@@ -67,7 +67,7 @@ class Attack(base.BaseHandler):
             self.redirect('/room')
         target = self.request.get('target')
         ## ERROR: "'Room' object has no attribute 'monster_set'"
-        possible_targets = player.location.monster_set.get() 
+        possible_targets = player.location.monster_set.run()
         if target not in possible_targets:        
             self.error(400)
         # Perform attack (using combat.py)
