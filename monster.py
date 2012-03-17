@@ -43,7 +43,7 @@ def move(monster):
     exits = monster.location.exits
     exit_keys = monster.location.exit_keys
     target = randint(0, len(exits)-1)
-    if exits[target] != -1:
+    if exits[target] != -1 and target != 4:
         monster.location = exit_keys[exits[target]]
         monster.put()
 
