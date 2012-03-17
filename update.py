@@ -14,6 +14,7 @@ def update():
     players = player.Player.gql("WHERE has_moved = FALSE AND is_alive = TRUE").run()
     for p in players:
         p.idle_out = p.idle_out + 1
+        p.health = p.health + 1
         if p.idle_out > 10 * 2:
             p.is_alive = False
         p.messages.append("")
