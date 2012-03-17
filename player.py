@@ -48,14 +48,14 @@ class Move(base.BaseHandler):
                     player.put()
                     self.redirect('/win')
                     return
-                player.location = map.get_map(player.location.parent().depth + 1).start
+                player.location = map.get_map(depth + 1).start
             else:
                 player.location = room.Room.get(exit_keys[exits[target_exit]])
             player.has_moved = True
             player.put()
             self.redirect('/room')
         except Exception as e:
-            print e
+            self.redirect('/room?error=Python Error:' + str(e))
     get = base.require_player(get)
 
 class Attack(base.BaseHandler):

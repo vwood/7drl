@@ -18,7 +18,7 @@
   <div class="leftpanel">
 	<h3>{{ player.name }}</h3>
 	<img name="replace_{{ player.image }}" src="/images/Blank.png" />
-	<h4>Level: <a class="levelbar">{{ player.depth }}</a></h4>
+	<h4>Level: <a class="levelbar">{{ player.level }}</a></h4>
 	<h4>Health: <a class="healthbar">{{ player.health }}</a></h4>
 	<h4>Xp: <a class="xpbar">{{ player.score }}</a></h4>
 
@@ -27,8 +27,9 @@
 	  <img name="target_img" src="/images/Blank.png" class="imgalign"/> {{ item.name }}
 	</div>
 	<div>
-      <img src="/images/Attack.png" alt="Attack" title="Attack" class="imgalign"
-           onclick="href='/attack?target='+target; return true;">Attack</a>
+      <a href="#" onclick="href='/attack?target='+target; return true;">
+      <img src="/images/Attack.png" alt="Attack" title="Attack" class="imgalign">
+	  </a>
     </div>
   </div>
 
