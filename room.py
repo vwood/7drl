@@ -81,8 +81,8 @@ def create_room(map, title=None):
 def generate_title(floor, wall):
     floor_names = images.floor_names[floor]
     wall_names = images.wall_names[wall]
-    floor_name = floor_names[randint(0, len(images.floor_names)-1)]
-    wall_name = wall_names[randint(0, len(images.walls)-1)]
+    floor_name = floor_names[randint(0, len(floor_names)-1)]
+    wall_name = wall_names[randint(0, len(wall_names)-1)]
     return wall_name + floor_name
 
 def generate_room():
