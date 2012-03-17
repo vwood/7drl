@@ -5,6 +5,7 @@ import base
 import map
 import room
 import images
+import monster
 
 class Player(db.Model):
     """Models a wonderful player of our humble game."""
@@ -63,13 +64,13 @@ class Attack(base.BaseHandler):
     # GET to workaround browser limitations and avoid further javascript
     def get(self):
         player = get_player()
-        if player.has_moved:
-            self.redirect('/room')
+        #if player.has_moved:
+        #    self.redirect('/room?error=Already Moved')
         target = self.request.get('target')
-
-        possible_targets = player.location.monster_set.run()
-        if target not in possible_targets:
-            self.redirect('/room?error=Incorrect Target')
+        target = monster.Monster.get(target)
+        if target is None or target.location.key() != player.location.key():
+            self.redirect('/room?error=Target Not Found')
+        
         # Perform attack (using combat.py)
         # OR - merely check that one move per turn per player
     get = base.require_player(get)
