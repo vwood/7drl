@@ -44,7 +44,7 @@ def require_player(fn):
         if user is None:
             self.redirect(users.create_login_url(self.request.url))
         elif player.get_player(user) is None:
-            self.redirect("/create_player")
+            self.redirect("/character_generation")
         else:
             fn(self)
     return decorated_fn
