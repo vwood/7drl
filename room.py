@@ -24,10 +24,6 @@ class Room(db.Model):
 import player
 import monster
 
-def room_key(room_name=None):
-    """Builds a datastore key for a Room entity with board_name."""
-    return db.Key.from_path('Room', room_name or 'default_room')
-
 class GetRoom(base.BaseHandler):
     def get(self):
         user = player.get_player()
