@@ -86,7 +86,8 @@ class Attack(base.BaseHandler):
             self.redirect('/room?error=Target Not Found')
         
         combat.player_attack(player, target)
-
+        # TODO: could add combate message to this request
+        self.redirect('/room')
     get = base.require_player(get)
 
 class CreatePlayer(base.BaseHandler):
