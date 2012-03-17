@@ -54,18 +54,18 @@ player = [15, 30, 31]
 creatures = [16, 17, 18, 19, 20, 21, 22, 23, 25]
 
 wall_names = [["Rocky ", "Cold ", "Rock ", "Jagged "],
-              ["Deep ", "Stoney ", "Stone "],
+              ["Deep ", "Stoney ", "Stone ", "Cyclopean "],
               ["Underground ", "Earthen ", "Clay "],
-              ["Bloody ", "Violent ", "Stained "],
-              ["Slime ", "Moist ", "Slippery "],
-              ["Island ", "Moist ", "Wet "],
-              ["Hellish ", "Blasted ", "Volcanic "],
+              ["Bloody ", "Violent ", "Stained ", "Elegiac "],
+              ["Slimy ", "Moist ", "Slippery ", "Noisome "],
+              ["Island ", "Moist ", "Wet ", "Antediluvian "],
+              ["Hellish ", "Blasted ", "Volcanic ", "Unholy "],
               ["Forest ", "Druidic ", "Overgrown ", "Fertile"]]
 
 floor_names = [["Cavern", "Lair"],
-               ["Room", "Temple"],
+               ["Room", "Temple", "Crypt"],
                ["Burrow", "Soil", "Hole"],
                ["Pit", "Temple", "Lair"],
-               ["Grove", "Growth", "Slide"]]
+               ["Grove", "Growth", "Algae"]]
 
 monster_health = [40, 30, 50, 80, 90, 120, 60, 400, 10]
