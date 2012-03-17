@@ -28,6 +28,7 @@ def move(monster):
         return
 
     players = player.Player.all(keys_only=True).filter("location =", monster.location.key())
+    players = list(players)
     if len(players) > 0:
         target = players[randint(0, len(players) - 1)]
         combat.monster_attack(monster, target)
@@ -38,8 +39,8 @@ def move(monster):
 
     exits = monster.location.exits
     target = randint(0, len(exits)-1)
-    if exits[target] is not None:
-        monster.location = exits[target]
+    if exits[target] != -1:
+        monster.location = exit_keys[exits[target]]
         monster.put()
 
 def generate_new_monster(room):
