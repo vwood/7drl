@@ -5,6 +5,7 @@ from google.appengine.ext import db
 import base
 import room
 import images
+import player
 
 class Monster(db.Model):
     """Models some hideous creature."""
@@ -19,16 +20,29 @@ class Monster(db.Model):
 def move(monster):
     # is a player here?
     # dispatch based on what kind of monster I am...
+
+    if monster.has_moved:
+        monster.has_moved == False
+        monster.put()
+        return
+
+    players = player.Player.all(keys_only=True).filter("location =", monster.location)
+    if len(players) > 0:
+        target = players[randint(0, len(players) - 1)]
+        attack(monster, target)
+        return
+
     if randint(0,1) == 0:
         return
+
     exits = monster.location.exits
     target = randint(0, len(exits)-1)
     if exits[target] is not None:
         monster.location = exits[target]
         monster.put()
 
-def attack():
-    pass
+def attack(monster, target):
+    combat.attack(monster, target)
 
 def generate_new_monster(room):
     m = Monster()

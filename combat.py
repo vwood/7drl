@@ -83,9 +83,11 @@ if __name__ == '__main__':
     print "in %d rounds" % count
 
 
+import player
+import monster
 
 def attack(source, target):
-     pass
+    pass
 
- def hit(source, target):
-     pass
+def hit(source, target):
+    pass

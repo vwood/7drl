@@ -6,6 +6,7 @@ import map
 import room
 import images
 import monster
+import combat
 
 class Player(db.Model):
     """Models a wonderful player of our humble game."""
@@ -14,6 +15,7 @@ class Player(db.Model):
     image = db.IntegerProperty()
     location = db.ReferenceProperty(room.Room)
     health = db.IntegerProperty()
+    attack = db.IntegerProperty()
     level = db.IntegerProperty()
     score = db.IntegerProperty()
     is_alive = db.BooleanProperty()
@@ -52,6 +54,7 @@ class Move(base.BaseHandler):
                     self.redirect('/win')
                     return
                 player.health = min(100, player.health + 10)
+                player.attack = min(0, player.attack + 5)
                 player.location = map.get_map(depth + 1).start
             else:
                 player.location = room.Room.get(exit_keys[exits[target_exit]])
@@ -71,14 +74,15 @@ class Attack(base.BaseHandler):
         target = self.request.get('target')
         try:
             target = monster.Monster.get(target)
-        except BadKeyError:
+        except db.BadKeyError:
             self.redirect('/room?error=Target Not Found')
+            return
 
         if target is None or target.location.key() != player.location.key():
             self.redirect('/room?error=Target Not Found')
         
-        # Perform attack (using combat.py)
-        # OR - merely check that one move per turn per player
+        combat.attack(player, target)
+
     get = base.require_player(get)
 
 class CreatePlayer(base.BaseHandler):
@@ -94,6 +98,7 @@ class CreatePlayer(base.BaseHandler):
             player.name = self.request.get('name')
             player.health = 100
             player.level = 1
+            player.attack = 10
             player.score = 0
             player.has_won = False
             player.idle_out = 0
