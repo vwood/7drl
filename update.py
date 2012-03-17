@@ -2,6 +2,7 @@
 # Update
 #
 
+import score
 import player
 import monster
 
@@ -34,6 +35,7 @@ def update():
     dead = player.Player.gql("WHERE is_alive = FALSE").run()
     for dodo in dead:
         try:
+            score.add_score(dodo)
             dodo.delete()
         except NotSavedError:
             # Guess it was just a ghost
