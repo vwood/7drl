@@ -71,22 +71,18 @@ def create_room(map, title=None):
     room = Room(parent = map, key_name = None)
     if title is None:
         title = generate_title()
-    room.title = title
-    room.width, room.tiles = generate_room()
+    room.title, room.width, room.tiles = generate_room()
     room.free_space = free_space_list(room.tiles)
     room.exits = [-1, -1, -1, -1, -1]
     room.exit_keys = []
     room.put()
     return room
     
-def generate_title():
-    "Generate the title of the room."
-    return "Default Room"
-
 def generate_room():
     "Generate the room layout."
     width, height = 7, 5
 
+    title = "Default Room."
     floor = images.floors[randint(0, len(images.floors)-1)]
     wall = images.walls[randint(0, len(images.walls)-1)]
 
@@ -106,7 +102,7 @@ def generate_room():
 
     # Flatten tile array
     result = [cell for row in result for cell in row]
-    return (width, result)
+    return (title, width, result)
 
 def link_rooms(room_a, room_b):
     "Join two rooms with exits."

@@ -16,6 +16,7 @@ class Player(db.Model):
     score = db.IntegerProperty()
     is_alive = db.BooleanProperty()
     has_moved = db.BooleanProperty()
+    has_won = db.BooleanProperty()
     
 def get_player(user = None):
     "Gets the player model of a current user."
@@ -36,7 +37,18 @@ class Move(base.BaseHandler):
             exit_keys = player.location.exit_keys
             if target_exit >= len(exits) or exits[target_exit] == -1:
                 self.redirect('/room?error="Invalid Exit"')
-            player.location = room.Room.get(exit_keys[exits[target_exit]])
+                return
+            if target_exit == 4:
+                # Go down stairs
+                depth = player.location.parent().depth
+                if depth == map.final_depth:
+                    player.has_won = True
+                    player.put()
+                    self.redirect('/win')
+                    return
+                player.location = map.get_map(player.location.parent().depth + 1).start
+            else:
+                player.location = room.Room.get(exit_keys[exits[target_exit]])
             player.has_moved = True
             player.put()
             self.redirect('/room')

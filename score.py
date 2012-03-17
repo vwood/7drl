@@ -9,6 +9,11 @@ class Score(db.Model):
     user = db.UserProperty()
     score = db.IntegerProperty()
 
+class Win(base.BaseHandler):
+    def get(self):
+        # Check player really has won, calc score + add to highscore + delete player object
+        pass
+
 def calculate_score(player, winning):
     score = 0
     # levels decended

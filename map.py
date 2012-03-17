@@ -85,11 +85,17 @@ def generate_map_layout(map):
     if randint(0,1) == 0:
         add_loop()
 
+    # Actually encode exits onto room objects
     for a_room in all_rooms:
         for i, room_exit in enumerate(a_room[1:]):
             if room_exit:
                 a_room[0].exits[i] = len(a_room[0].exit_keys)
                 a_room[0].exit_keys.append(room_exit[0].key())
+
+        # Add stairs
+        if a_room is end_room:
+            a_room[0].exits[4] = len(a_room[0].exit_keys)
+            # Don't encode a thingy here - we deal with stairs specially in Move()
         a_room[0].put()
 
     return layout[0]
