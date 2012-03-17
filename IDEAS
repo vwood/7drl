@@ -1,25 +1,10 @@
 * Player structure
-  * Position
-  * Creation screen
-  	* Just a series of strange rooms...?
-  	* Races (different pictures)
-      * Skip this choice
-	  * Rogue == @
-	  * Hydra
-	  * Two headed giant
 
 * Chat box?
 
 * Map structure
   * Editing
   	* Generation
-  * Drawing to screen
-  * Moving an @ around
-  * Special rooms 
-  	* Stores
-	* Pillar
-	* Sudoku level (sokoban)
-	* Color coded doors + keys?
   * Room contents
   	* Corpses
 	* Messages (elebereth)
@@ -29,9 +14,6 @@
   	* Drawing on map
   * Pet
   * Kinds
-    * Cthulhu
-    * Bats
-	* Storekeeper
     * Janitor 
       * Resets/generates items around him (cleanup)
 

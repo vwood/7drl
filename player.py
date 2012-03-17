@@ -28,6 +28,7 @@ def get_player(user = None):
     
 class Move(base.BaseHandler):
     # TODO: limit to one a turn
+    # TODO: enemies should occasionally block your move (and attack you)
     # GET to workaround browser limitations and avoid further javascript
     def get(self):
         player = get_player()

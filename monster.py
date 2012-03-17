@@ -14,6 +14,7 @@ class Monster(db.Model):
     location = db.ReferenceProperty(room.Room)
     health = db.IntegerProperty()
     is_alive = db.BooleanProperty()
+    has_moved = db.BooleanProperty()
     
 def move(monster):
     # is a player here?
@@ -37,4 +38,5 @@ def generate_new_monster(room):
     m.health = images.monster_health[m.creature_type]
     m.location = room
     m.is_alive = True
+    m.has_moved = False
     m.put()
