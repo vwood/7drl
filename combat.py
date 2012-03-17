@@ -102,11 +102,14 @@ def player_attack(source, target):
     a = source.attack 
     d = target.attack 
     if randint(0, 50) + a - d > 25:
-        target.health -= min(a - d / 2, 4)
-        source.health -= min(d - a, 2)
+        target.health -= max(a - d / 2, 4)
+        source.health -= max(d - a, 2)
         source.messages.append("you hit %s." % target.name)
+        source.messages = source.messages
         source.put()
         target.put()
-    source.messages.append("you missed.")
-    target.put()
+    else:
+        source.messages.append("you missed.")
+        source.messages = source.messages
+        target.put()
 
