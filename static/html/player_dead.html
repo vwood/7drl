@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block head %}
+{% endblock %}
+
+{% block nav %}
+{% endblock %}
+
+{% block content %}
+{% if error %}
+<div class="error">
+<a href="/character_generation"><h2> Play again? </h2></a>
+</div>
+{% endif %}
+
+<div class="title">
+  <h2>You have died...</h2>
+</div>
+
+<div class="mainpanel">
+  <div class="leftpanel">
+	<h3>{{ player.name }}</h3>
+	<img name="replace_{{ player.image }}" src="/images/Blank.png" />
+	<h4>Level: <a class="levelbar">{{ player.level }}</a></h4>
+	<h4>Health: <a class="healthbar">{{ player.health }}</a></h4>
+	<h4>Xp: <a class="xpbar">{{ player.score }}</a></h4>
+  </div>
+
+  <div class="rightpanel">
+	{% for item in items %}
+	<div>
+	  <img name="replace_{{ item.image }}" src="/images/Blank.png" class="imgalign" onclick="set_target('{{ item.key }}', {{ item.image }});" />
+      {{ item.name }}
+	</div>
+	{% endfor %}
+	<div>
+	{% for msg in room.messages %}
+    <p>{{ msg }}</p>
+    {% endfor %}
+    </div>
+  </div>
+
+  <table class="room">
+  {% for cell in room.tiles %}
+  {% if forloop.counter0|divisibleby:room.width %}
+  <tr>
+  {% endif %}
+  <td>
+    <a name="{{ forloop.counter0 }}_exit">
+	  <img src="/images/Blank.png" name="{{ forloop.counter0 }}" title="blank" />
+    </a>
+  </td>
+  {% if forloop.counter|divisibleby:room.width %}
+  </tr>
+  {% endif %}
+  {% endfor %}
+  </table>
+</div>
+
+<script type="text/javascript">
+  var target = "";
+  var target_img = 26;
+  var width = {{ room.width }};
+  var tiles = [{{ room.tiles|join:"," }}];
+  var free_space = [{{ room.free_space|join:"," }}];
+  var items = [ {% for item in items %} {{ item.image }} {% if not forloop.last %}, {% endif %} {% endfor %} ];
+  var exit_keys = ["{{ room.exit_keys|join:"\", \"" }}"];
+  var exits = [ {{ room.exits|join:"," }} ];
+</script>
+<script type="text/javascript" src="js/room.js"> </script>
+
+{% endblock %}
