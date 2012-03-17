@@ -81,7 +81,7 @@ class CreatePlayer(base.BaseHandler):
     def post(self):
         user = users.get_current_user()
         old_player = Player.gql("WHERE user = :1", user).get()
-        if old_player is None or old_player.is_alive = False:
+        if old_player is None or old_player.is_alive == False:
             player = Player()
             player.user = users.get_current_user()
             player.is_alive = True

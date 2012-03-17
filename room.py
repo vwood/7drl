@@ -32,7 +32,7 @@ class GetRoom(base.BaseHandler):
     def get(self):
         user = player.get_player()
         if user.is_alive == False:
-            values = {'player': user, 'room', user.location}
+            values = {'player': user, 'room': user.location}
             self.render_template('static/html/player_dead.html', values)
 
         room = user.location
