@@ -17,6 +17,7 @@ class Monster(db.Model):
     health = db.IntegerProperty()
     attack = db.IntegerProperty()
     is_alive = db.BooleanProperty()
+    is_hostile = db.BooleanProperty()
     has_moved = db.BooleanProperty()
     
 def move(monster):
@@ -28,12 +29,13 @@ def move(monster):
         monster.put()
         return
 
-    players = player.Player.all(keys_only=True).filter("location =", monster.location.key())
-    players = list(players)
-    if len(players) > 0:
-        target = player.Player.get(players[randint(0, len(players) - 1)])
-        combat.monster_attack(monster, target)
-        return
+    if monster.is_hostile:
+        players = player.Player.all(keys_only=True).filter("location =", monster.location.key())
+        players = list(players)
+        if len(players) > 0:
+            target = player.Player.get(players[randint(0, len(players) - 1)])
+            combat.monster_attack(monster, target)
+            return
 
     if randint(0,1) == 0:
         return
@@ -52,6 +54,7 @@ def generate_new_monster(room):
     m.name = images.images[m.image].replace(".png", "").replace("_", " ")
     m.health = images.monster_health[m.creature_type]
     m.attack = images.monster_attack[m.creature_type]
+    m.is_hostile = images.monster_is_hostile[m.creature_type]
     m.location = room
     m.is_alive = True
     m.has_moved = False

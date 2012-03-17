@@ -70,3 +70,4 @@ floor_names = [["Cavern", "Lair", "Oubliette"],
 
 monster_health = [40, 30, 50, 80, 90, 120, 60, 400, 10]
 monster_attack = [4, 3, 5, 8, 9, 12, 6, 20, 0]
+monster_is_hostile = [False, True, True, False, False, True, False, True, False]

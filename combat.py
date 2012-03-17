@@ -1,5 +1,9 @@
 from random import randint
 
+#
+# This system was the plan, now it's really different...
+#
+
 restv = (6, 15)
 hurtv = (8, 30)
 atirev = (6, 10)
@@ -119,6 +123,7 @@ def player_attack(source, target):
             source.messages.append("you die.")
         source.messages = source.messages
         source.put()
+        target.is_hostile = True
         target.put()
     else:
         source.messages.append("You missed.")
