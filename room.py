@@ -92,7 +92,7 @@ def generate_title(floor, wall):
 
 def generate_room():
     "Generate the room layout."
-    width, height = 7, 5
+    width, height = randint(6, 8), randint(4, 6)
 
     floor = randint(0, len(images.floors)-1)
     wall = randint(0, len(images.walls)-1)
