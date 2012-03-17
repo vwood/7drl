@@ -7,6 +7,7 @@ from random import randint
 from google.appengine.ext import db 
 
 import room
+import update2
 
 final_depth = 5
 
@@ -20,6 +21,7 @@ def create_map(depth):
     m.depth = depth
     m.start = generate_map_layout(m)
     m.put()
+    update2.update2()
     return m
 
 def get_map(depth):
