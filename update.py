@@ -15,7 +15,7 @@ def update():
     for p in players:
         p.idle_out = p.idle_out + 1
         if p.idle_out > 10 * 2:
-            p.is_alive = FALSE
+            p.is_alive = False
         p.messages.append("")
         if len(p.messages) > 5:
             p.messages = p.messages[-5:]
