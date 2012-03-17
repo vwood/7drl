@@ -7,46 +7,45 @@ import ImageDraw
 import Image
 
 output_directory = "static/images/"
-text_images = {'blank': (' ', 'black'),
-               'wall1': ('#', 'grey'),
-               'wall2': ('#', 'darkgrey'),
-               'wall3': ('#', 'brown'),
-               'wall4': ('#', 'red'),
-               'wall5': ('#', 'forestgreen'),
-               'door': ('+', 'brown'),
-               'opendoor': ('\'', 'brown'),
-               'floor1': ('.', 'lightgrey'),
-               'floor2': ('.', 'brown'),
-               'floor3': ('.', 'darkgrey'),
-               'floor4': ('.', 'red'),
-               'floor5': ('.', 'forestgreen'),
-               'corpse': (unichr(216), 'darkred'),
-               'catdog': (unichr(162), 'orange'),
-               'player': ('@', 'white'),
-               'shopkeeper': ('S', 'darkblue'),
-               'janitor': ('J', 'brown'),
-               'dwarf': (unichr(181), 'honeydew'), # I'm hilarious
-               'bard': (unichr(223), 'goldenrod'),
-               'goblin': ('g', 'green'),
-               'cthulhu': (unichr(199), 'green'),
-               'water': ('~', 'blue'),
-               'lava': ('~', 'red'),
-               'wand': ('/', 'brown'),
-               'sword1': ('(', 'gold'),
-               'sword2': ('(', 'azure'),
-               'sword3': ('(', 'silver'),
-               'tree': ('T', 'green'),
-               'attack': ('A', 'red')}
+text_images = {'Blank': (' ', 'black'),
+               'Rock_Wall': ('#', 'grey'),
+               'Stone_Wall': ('#', 'darkgrey'),
+               'Dirt_Wall': ('#', 'brown'),
+               'Red_Wall': ('#', 'red'),
+               'Slime_Wall': ('#', 'forestgreen'),
+               'Door': ('+', 'brown'),
+               'Rock_Floor': ('.', 'lightgrey'),
+               'Dirt_Floor': ('.', 'brown'),
+               'Stone_Floor': ('.', 'darkgrey'),
+               'Red_Floor': ('.', 'red'),
+               'Moss_Floor': ('.', 'forestgreen'),
+               'Corpse': (unichr(216), 'darkred'),
+               'Cat-dog': (unichr(162), 'orange'),
+               'Rogue': ('@', 'white'),
+               'Shopkeeper': ('S', 'darkblue'),
+               'Janitor': ('J', 'brown'),
+               'Dwarf': (unichr(181), 'honeydew'), # I'm hilarious
+               'Bard': (unichr(223), 'goldenrod'),
+               'Goblin': ('g', 'green'),
+               'Cthulhu': (unichr(199), 'green'),
+               'Water': ('~', 'blue'),
+               'Lava': ('~', 'red'),
+               'Wand': ('/', 'brown'),
+               'Gold_Sword': ('(', 'gold'),
+               'Crystal_Sword': ('(', 'azure'),
+               'Silver_Sword': ('(', 'silver'),
+               'Tree': ('T', 'green'),
+               'Attack': ('A', 'red')}
 
-smaller_text_images = {'kobold_baby': ('k', 'brown'),
-                       'spaniard': (unichr(209), 'white'),
-                       'hat_guy': (unichr(212), 'white')}
+smaller_text_images = {'Kobold_Baby': ('k', 'brown'),
+                       'Spaniard': (unichr(209), 'white'),
+                       'Hat_Guy': (unichr(212), 'white')}
 
-underlined_text_images = {'stairs': ('>', '#0077cc'), # Default link color in chrome
-                          'floorexit': ('.', '#0077cc'),
-                          'doorexit': ('\'', '#0077cc')}
+underlined_text_images = {'Stairs': ('>', '#0077cc'), # Default link color in chrome
+                          'Exit': ('.', '#0077cc'),
+                          'Open_Door': ('\'', '#0077cc')}
 
-line_images = {'wizard': ([(0.3,0.2), (0.7,0.8), (0.5,0.5),
+line_images = {'Wizard': ([(0.3,0.2), (0.7,0.8), (0.5,0.5),
                            (0.3,0.8), (0.5,0.5)], 'purple')}
 
 margin = -6

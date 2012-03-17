@@ -15,16 +15,16 @@
 <div class="mainpanel">
   <div class="leftpanel">
 	<h3>{{ player.name }}</h3>
-	<img src="/images/player.png"/>
+	<img src="replace_{{ player.image }}"/>
 	<h4>Health: <a class="healthbar">{{ player.health }}</a></h4>
 	<h4>Xp: <a class="xpbar">{{ player.score }}</a></h4>
 
     <div>
       Target: 	
-	  <img name="target_img" src="/images/blank.png" class="imgalign"/> {{ item.name }}
+	  <img name="target_img" src="/images/Blank.png" class="imgalign"/> {{ item.name }}
 	</div>
 	<div>
-      <img src="/images/attack.png" alt="Attack" title="Attack" class="imgalign"
+      <img src="/images/Attack.png" alt="Attack" title="Attack" class="imgalign"
            onclick="href='/attack?target='+target; return true;">Attack</a>
     </div>
   </div>
@@ -32,7 +32,7 @@
   <div class="rightpanel">
 	{% for item in items %}
 	<div>
-	  <img name="replace_{{ item.image }}" src="/images/blank.png" class="imgalign" onclick="target = {{ item.key }}; document.getElementsByName('target_img')[0].src = images[{{ item.image }}" />
+	  <img name="replace_{{ item.image }}" src="/images/Blank.png" class="imgalign" onclick="target = {{ item.key }}; document.getElementsByName('target_img')[0].src = images[{{ item.image }}]" />
       {{ item.name }}
 	</div>
 	{% endfor %}
@@ -50,7 +50,7 @@
   {% endif %}
   <td>
     <a name="{{ forloop.counter0 }}_exit">
-	  <img src="/images/blank.png" name="{{ forloop.counter0 }}" title="blank" />
+	  <img src="/images/Blank.png" name="{{ forloop.counter0 }}" title="blank" />
     </a>
   </td>
   {% if forloop.counter|divisibleby:room.width %}
