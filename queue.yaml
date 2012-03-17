@@ -1,4 +1,4 @@
-total_store_limit: 10M
+total_storage_limit: 10M
 queue:
 - name: tick
   rate: 6/m
