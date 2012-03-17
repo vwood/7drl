@@ -26,7 +26,7 @@ def move(monster):
         monster.put()
         return
 
-    players = player.Player.all(keys_only=True).filter("location =", monster.location)
+    players = player.Player.all(keys_only=True).filter("location =", monster.location.key())
     if len(players) > 0:
         target = players[randint(0, len(players) - 1)]
         attack(monster, target)
@@ -50,6 +50,7 @@ def generate_new_monster(room):
     m.image = images.creatures[m.creature_type]
     m.name = images.images[m.image].replace(".png", "").replace("_", " ")
     m.health = images.monster_health[m.creature_type]
+    m.attack = images.monster_attack[m.creature_type]
     m.location = room
     m.is_alive = True
     m.has_moved = False

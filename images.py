@@ -69,4 +69,4 @@ floor_names = [["Cavern", "Lair", "Oubliette"],
                ["Grove", "Growth", "Algae"]]
 
 monster_health = [40, 30, 50, 80, 90, 120, 60, 400, 10]
-monster_attack = [4, 3, 5, 8, 9, 12, 6, 40, 0]
+monster_attack = [4, 3, 5, 8, 9, 12, 6, 20, 0]

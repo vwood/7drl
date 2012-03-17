@@ -87,7 +87,11 @@ import player
 import monster
 
 def attack(source, target):
-    pass
+    a = source.attack 
+    d = target.attack 
+    if randint(0, 50) + a - d > 25:
+        target.health -= min(a - d / 2, 4)
+        source.health -= min(d - a, 2)
+        source.put()
+        target.put()
 
-def hit(source, target):
-    pass
