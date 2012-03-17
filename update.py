@@ -2,20 +2,20 @@
 # Update
 #
 
-from player import *
-from monster import *
+import player
+import monster
 
-monsters = Monster.gql("WHERE is_alive = TRUE").run()
-for monster in monsters:
-    move(monster)
+monsters = monster.Monster.gql("WHERE is_alive = TRUE").run()
+for m in monsters:
+    move(m)
 
-players = Player.gql("WHERE has_moved = TRUE AND is_alive = TRUE").run()
-for player in players:
-    player.has_moved = False
-    player.put()
+players = player.Player.gql("WHERE has_moved = TRUE AND is_alive = TRUE").run()
+for p in players:
+    p.has_moved = False
+    p.put()
 
 # Bring out your dead!
-dead = Player.gql("WHERE is_alive = FALSE").run()
+dead = player.Player.gql("WHERE is_alive = FALSE").run()
 for dodo in dead:
     try:
         dodo.delete()
@@ -23,7 +23,7 @@ for dodo in dead:
         # Guess it was just a ghost
         pass
 
-dead = Monster.gql("WHERE is_alive = FALSE").run()
+dead = monster.Monster.gql("WHERE is_alive = FALSE").run()
 for dodo in dead:
     try:
         dodo.delete()

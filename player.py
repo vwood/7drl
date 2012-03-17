@@ -55,7 +55,7 @@ class Move(base.BaseHandler):
             player.has_moved = True
             player.put()
             self.redirect('/room')
-        except Exception as e:
+        except Exception, e:
             self.redirect('/room?error=Python Error:' + str(e))
     get = base.require_player(get)
 
