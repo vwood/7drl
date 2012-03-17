@@ -42,6 +42,7 @@ class GetRoom(base.BaseHandler):
             values = {'player': user,
                       'room': room,
                       'items': items,
+                      'last_target': self.request.get('last_target'),
                       'error': self.request.get('error')}
             self.render_template('static/html/room.html', values)
     get = base.require_player(get)

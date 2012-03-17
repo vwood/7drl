@@ -31,14 +31,15 @@ def get_player(user = None):
     return Player.gql("WHERE user = :1", user).get()
     
 class Move(base.BaseHandler):
-    # TODO: limit to one a turn
     # TODO: enemies should occasionally block your move (and attack you)
+
     # GET to workaround browser limitations and avoid further javascript
     def get(self):
         player = get_player()
         try:
             if player.has_moved:
                 self.redirect('/room')
+                return
             target_exit = int(self.request.get('exit'))
             exits = player.location.exits 
             exit_keys = player.location.exit_keys
@@ -70,11 +71,17 @@ class Attack(base.BaseHandler):
     # GET to workaround browser limitations and avoid further javascript
     def get(self):
         player = get_player()
-        #if player.has_moved:
-        #    self.redirect('/room?error=Already Moved')
+        if player.has_moved:
+            self.redirect('/room?error=Already Moved')
+            return
         target = self.request.get('target')
         try:
-            target = monster.Monster.get(target)
+            m = monster.Monster.get(target)
+            if m is None or m.location.key() != player.location.key():
+                self.redirect('/room?error=Target Not Found')
+            combat.player_attack(player, m)
+            # TODO: could add combat message to this request
+            self.redirect('/room?last_target=%s' % target)
         except db.BadKeyError:
             self.redirect('/room?error=Target Not Found')
             return
@@ -82,12 +89,6 @@ class Attack(base.BaseHandler):
             self.redirect('/room?error=Target is Invalid')
             return
 
-        if target is None or target.location.key() != player.location.key():
-            self.redirect('/room?error=Target Not Found')
-        
-        combat.player_attack(player, target)
-        # TODO: could add combate message to this request
-        self.redirect('/room')
     get = base.require_player(get)
 
 class CreatePlayer(base.BaseHandler):
