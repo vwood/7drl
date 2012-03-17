@@ -126,6 +126,10 @@ function keydown_handler(event) {
 	case 190:
 		window.location = '/move?exit=4';
 		return;
+	case 32:
+		set_action_href();
+		window.location = document.getElementsByName('action')[0].href;
+		return;
 	}
 }
 

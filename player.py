@@ -69,7 +69,11 @@ class Attack(base.BaseHandler):
         #if player.has_moved:
         #    self.redirect('/room?error=Already Moved')
         target = self.request.get('target')
-        target = monster.Monster.get(target)
+        try:
+            target = monster.Monster.get(target)
+        except BadKeyError:
+            self.redirect('/room?error=Target Not Found')
+
         if target is None or target.location.key() != player.location.key():
             self.redirect('/room?error=Target Not Found')
         
