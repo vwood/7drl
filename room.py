@@ -8,8 +8,6 @@ from google.appengine.ext import db
 
 import images
 import base
-import player
-import monster
 
 class Room(db.Model):
     """Models a location (location ~= page)."""
@@ -20,6 +18,11 @@ class Room(db.Model):
     messages = db.ListProperty(str)
     exits = db.ListProperty(int)
     exit_keys = db.ListProperty(db.Key)
+
+
+# Python can't do these circular imports - what a stupid language
+import player
+import monster
 
 def room_key(room_name=None):
     """Builds a datastore key for a Room entity with board_name."""
