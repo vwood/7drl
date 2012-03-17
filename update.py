@@ -9,6 +9,14 @@ monsters = monster.Monster.gql("WHERE is_alive = TRUE").run()
 for m in monsters:
     move(m)
 
+# Kill idle players > 10 minutes
+players = player.Player.gql("WHERE has_moved = FALSE AND is_alive = TRUE").run()
+for p in players:
+    p.idle_out = p.idle_out + 1
+    if p.idle_out > 10 * 2:
+        p.is_alive = FALSE
+    p.put()
+
 players = player.Player.gql("WHERE has_moved = TRUE AND is_alive = TRUE").run()
 for p in players:
     p.has_moved = False

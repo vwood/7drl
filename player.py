@@ -19,6 +19,7 @@ class Player(db.Model):
     is_alive = db.BooleanProperty()
     has_moved = db.BooleanProperty()
     has_won = db.BooleanProperty()
+    idle_out = db.IntegerProperty()
     
 def get_player(user = None):
     "Gets the player model of a current user."
@@ -90,6 +91,7 @@ class CreatePlayer(base.BaseHandler):
             player.level = 1
             player.score = 0
             player.has_won = False
+            player.idle_out = 0
             player.put()
         self.redirect('/room')
     post = base.require_login(post)
