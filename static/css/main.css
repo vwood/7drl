@@ -14,7 +14,7 @@ h1 {
 
 h1, h2 {
 	font-family: serif; 
-	font-style: bold;
+	font-weight: bold;
 	margin: 0;
 	line-height: 1em;
 }
@@ -43,6 +43,18 @@ h1, h2 {
 .login {
 	text-align: right;
 	float: right;
+}
+
+.error {
+	padding: 5px;
+	margin: 5px;
+	text-color: #f00;
+	background-color: #000;
+	text-align: center;
+}
+
+div.error h2 {
+	color: #f00;
 }
 
 .title {

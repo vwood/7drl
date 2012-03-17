@@ -5,7 +5,9 @@
 
 {% block content %}
 {% if error %}
-<h2> {{ error }} </h2>
+<div class="error">
+<h2> ERROR: {{ error }} </h2>
+</div>
 {% endif %}
 
 <div class="title">

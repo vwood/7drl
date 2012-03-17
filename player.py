@@ -37,7 +37,7 @@ class Move(base.BaseHandler):
             exits = player.location.exits 
             exit_keys = player.location.exit_keys
             if target_exit >= len(exits) or exits[target_exit] == -1:
-                self.redirect('/room?error="Invalid Exit"')
+                self.redirect('/room?error=Invalid Exit')
                 return
             if target_exit == 4:
                 # Go down stairs
@@ -54,8 +54,8 @@ class Move(base.BaseHandler):
             player.has_moved = True
             player.put()
             self.redirect('/room')
-        except:
-            self.error(401)
+        except Exception as e:
+            print e
     get = base.require_player(get)
 
 class Attack(base.BaseHandler):
