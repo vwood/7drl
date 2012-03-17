@@ -1,4 +1,3 @@
-
 #
 # Tiles
 #
@@ -68,3 +67,5 @@ floor_names = [["Cavern", "Lair"],
                ["Burrow", "Soil", "Hole"],
                ["Pit", "Temple", "Lair"],
                ["Grove", "Growth", "Slide"]]
+
+monster_health = [40, 30, 50, 80, 90, 120, 60, 400, 10]

@@ -2,14 +2,16 @@ from random import randint
 
 from google.appengine.ext import db
 
-from base import *
-from room import *
-
+import base
+import room
+import images
 
 class Monster(db.Model):
     """Models some hideous creature."""
     name = db.StringProperty()
-    location = db.ReferenceProperty(Room)
+    creature_type = db.IntegerProperty()
+    image = db.IntegerProperty()
+    location = db.ReferenceProperty(room.Room)
     health = db.IntegerProperty()
     is_alive = db.BooleanProperty()
     
@@ -27,5 +29,12 @@ def move(monster):
 def attack():
     pass
 
-def generate_new_monster(name):
-    pass
+def generate_new_monster(room):
+    m = Monster()
+    m.creature_type = randint(0, len(images.creatures))
+    m.image = images.creatures[m.creature_type]
+    m.name = images.images[m.image].replace(".png", "")
+    m.health = images.monster_health[m.creature_type]
+    m.location = room
+    m.is_alive = True
+    m.put()
