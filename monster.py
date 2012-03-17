@@ -6,6 +6,7 @@ import base
 import room
 import images
 import player
+import combat
 
 class Monster(db.Model):
     """Models some hideous creature."""
@@ -30,7 +31,7 @@ def move(monster):
     players = player.Player.all(keys_only=True).filter("location =", monster.location.key())
     players = list(players)
     if len(players) > 0:
-        target = players[randint(0, len(players) - 1)]
+        target = player.Player.get(players[randint(0, len(players) - 1)])
         combat.monster_attack(monster, target)
         return
 
@@ -38,6 +39,7 @@ def move(monster):
         return
 
     exits = monster.location.exits
+    exit_keys = monster.location.exit_keys
     target = randint(0, len(exits)-1)
     if exits[target] != -1:
         monster.location = exit_keys[exits[target]]
