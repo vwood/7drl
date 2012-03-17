@@ -9,6 +9,7 @@ class Score(db.Model):
     user = db.UserProperty()
     image = db.IntegerProperty()
     score = db.IntegerProperty()
+    won = db.BooleanProperty()
 
 class Win(base.BaseHandler):
     def get(self):
@@ -26,7 +27,6 @@ def calculate_score(player, winning):
 
 def add_score(player, winning = False):
     score_value = calculate_score(player, winning)
-    # TODO: check we beat the top ten?
     if score_value <= 0:
         return
     top_scores = Score.all().order('-score').fetch(10)
@@ -36,4 +36,5 @@ def add_score(player, winning = False):
         score.user = player.user
         score.image = player.image
         score.score = score_value
+        score.won = winning
         score.put()
