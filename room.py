@@ -9,6 +9,7 @@ from google.appengine.ext import db
 import images
 import base
 import player
+import monster
 
 class Room(db.Model):
     """Models a location (location ~= page)."""
@@ -30,7 +31,8 @@ class GetRoom(base.BaseHandler):
         room = user.location
 
         players = player.Player.gql("WHERE location = :1", room).run()
-        items = list(players)
+        monsters = monster.Monster.gql("WHERE location = :1", room).run()
+        items = list(players) + list(monsters)
 
         if room is None:
             self.render_template('static/html/room_notfound.html')
