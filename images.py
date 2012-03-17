@@ -54,17 +54,17 @@ items = [24,27,28,29]
 player = [15, 30, 31]
 creatures = [16, 17, 18, 19, 20, 21, 22, 23, 25]
 
-wall_names = [["Rocky ", "Cold "],
-              ["Deep ", "Stoney "],
-              ["Underground ", "Soil "],
-              ["Bloody ", "Violent "],
-              ["Slime ", "Moist "],
+wall_names = [["Rocky ", "Cold ", "Rock ", "Jagged "],
+              ["Deep ", "Stoney ", "Stone "],
+              ["Underground ", "Earthen ", "Clay "],
+              ["Bloody ", "Violent ", "Stained "],
+              ["Slime ", "Moist ", "Slippery "],
               ["Island ", "Moist ", "Wet "],
               ["Hellish ", "Blasted ", "Volcanic "],
               ["Forest ", "Druidic ", "Overgrown ", "Fertile"]]
 
 floor_names = [["Cavern", "Lair"],
                ["Room", "Temple"],
-               ["Cave", "Basement"],
-               ["Hole", "Pit", "Temple", "Lair"],
-               ["Grove", "Growth" ]]
+               ["Burrow", "Soil", "Hole"],
+               ["Pit", "Temple", "Lair"],
+               ["Grove", "Growth", "Slide"]]
