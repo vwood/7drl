@@ -13,6 +13,7 @@ class Player(db.Model):
     image = db.IntegerProperty()
     location = db.ReferenceProperty(room.Room)
     health = db.IntegerProperty()
+    level = db.IntegerProperty()
     score = db.IntegerProperty()
     is_alive = db.BooleanProperty()
     has_moved = db.BooleanProperty()
@@ -41,6 +42,7 @@ class Move(base.BaseHandler):
             if target_exit == 4:
                 # Go down stairs
                 depth = player.location.parent().depth
+                player.level = player.level + 1
                 if depth == map.final_depth:
                     player.has_won = True
                     player.put()
@@ -83,6 +85,7 @@ class CreatePlayer(base.BaseHandler):
             player.image = images.player[int(self.request.get('class'))]
             player.name = self.request.get('name')
             player.health = 100
+            player.level = 1
             player.put()
         self.redirect('/room')
     post = base.require_login(post)

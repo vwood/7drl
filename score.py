@@ -7,6 +7,7 @@ class Score(db.Model):
     """Models a highscore."""
     name = db.StringProperty()
     user = db.UserProperty()
+    image = db.IntegerProperty()
     score = db.IntegerProperty()
 
 class Win(base.BaseHandler):
@@ -15,10 +16,9 @@ class Win(base.BaseHandler):
         pass
 
 def calculate_score(player, winning):
-    score = 0
-    # levels decended
-    # items found
-    # perhaps a partial score while playing (gold etc.)
+    score = player.score
+    score += player.health / 10
+    score *= player.level
     if winning:
         score += 10
         score *= 2
@@ -29,8 +29,11 @@ def add_score(player, winning = False):
     # TODO: check we beat the top ten?
     if score_value <= 0:
         return
-    score = Score()
-    score.name = player.name
-    score.user = player.user
-    score.score = score_value
-    score.post
+    top_scores = Score.all().order('-score').fetch(10)
+    if score > top_scores[-1].score:
+        score = Score()
+        score.name = player.name
+        score.user = player.user
+        score.image = player.image
+        score.score = score_value
+        score.put()
