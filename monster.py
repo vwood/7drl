@@ -31,7 +31,7 @@ def attack():
 
 def generate_new_monster(room):
     m = Monster()
-    m.creature_type = randint(0, len(images.creatures))
+    m.creature_type = randint(0, len(images.creatures) - 1)
     m.image = images.creatures[m.creature_type]
     m.name = images.images[m.image].replace(".png", "")
     m.health = images.monster_health[m.creature_type]
