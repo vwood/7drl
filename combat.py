@@ -128,5 +128,4 @@ def player_attack(source, target):
     else:
         source.messages.append("You missed.")
         source.messages = source.messages
-        target.put()
-
+        source.put()

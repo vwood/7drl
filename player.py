@@ -56,7 +56,7 @@ class Move(base.BaseHandler):
                     self.redirect('/win')
                     return
                 player.health = min(100, player.health + 10)
-                player.attack = min(0, player.attack + 5)
+                player.attack = min(0, player.attack + 3)
                 player.location = map.get_map(depth + 1).start
             else:
                 player.location = room.Room.get(exit_keys[exits[target_exit]])
@@ -106,7 +106,7 @@ class CreatePlayer(base.BaseHandler):
             player.health = 100
             player.level = 1
             player.messages = []
-            player.attack = 10
+            player.attack = 12
             player.score = 0
             player.has_won = False
             player.idle_out = 0

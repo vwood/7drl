@@ -19,6 +19,6 @@ if monster_count < max_monsters:
 
     while len(all_rooms) > 0 and monster_count < max_monsters:
         a_room = all_rooms.pop()
-        if a_room.monster_set.count() < 2:
+        if monster.Monster.all(keys_only=True).filter('location =', a_room).count() < 2:
             monster.generate_new_monster(a_room)
             monster_count += 1
