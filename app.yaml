@@ -25,5 +25,8 @@ handlers:
   script: update2.py
   login: admin
 
+- url: /player_count
+  script: status.py
+
 - url: /.*
   script: app.py

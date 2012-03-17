@@ -33,9 +33,6 @@ application = webapp.WSGIApplication(
      ('/move', player.Move),
      ('/attack', player.Attack),
      ('/character_generation', player.CharacterGeneration),
-#     ('/room_editor', room.RoomEditor),
-     ('/debug', debug.Debug),
-#     ('/random', room.RandomRoom),
      ('/room', room.GetRoom)],
     debug=True)
 
