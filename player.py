@@ -79,6 +79,7 @@ class Attack(base.BaseHandler):
             m = monster.Monster.get(target)
             if m is None or m.location.key() != player.location.key():
                 self.redirect('/room?error=Target Not Found')
+            player.has_moved = True
             combat.player_attack(player, m)
             # TODO: could add combat message to this request
             self.redirect('/room?last_target=%s' % target)
