@@ -66,12 +66,11 @@ class Attack(base.BaseHandler):
         if player.has_moved:
             self.redirect('/room')
         target = self.request.get('target')
-        ## ERROR: "'Room' object has no attribute 'monster_set'"
+
         possible_targets = player.location.monster_set.run()
-        if target not in possible_targets:        
-            self.error(400)
+        if target not in possible_targets:
+            self.redirect('/room?error=Incorrect Target')
         # Perform attack (using combat.py)
-        # Perhaps the attack should be in the heartbeat update
         # OR - merely check that one move per turn per player
     get = base.require_player(get)
 
