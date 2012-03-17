@@ -34,7 +34,7 @@ application = webapp.WSGIApplication(
      ('/attack', player.Attack),
      ('/character_generation', player.CharacterGeneration),
      ('/room', room.GetRoom)],
-    debug=True)
+    debug=False)
 
 webapp.template.register_template_library("common.django_filters")
 
