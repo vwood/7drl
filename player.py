@@ -14,6 +14,7 @@ class Player(db.Model):
     user = db.UserProperty()
     image = db.IntegerProperty()
     location = db.ReferenceProperty(room.Room)
+    messages = db.ListProperty(str)
     health = db.IntegerProperty()
     attack = db.IntegerProperty()
     level = db.IntegerProperty()
@@ -77,11 +78,14 @@ class Attack(base.BaseHandler):
         except db.BadKeyError:
             self.redirect('/room?error=Target Not Found')
             return
+        except db.KindError:
+            self.redirect('/room?error=Target is Invalid')
+            return
 
         if target is None or target.location.key() != player.location.key():
             self.redirect('/room?error=Target Not Found')
         
-        combat.attack(player, target)
+        combat.player_attack(player, target)
 
     get = base.require_player(get)
 
@@ -98,6 +102,7 @@ class CreatePlayer(base.BaseHandler):
             player.name = self.request.get('name')
             player.health = 100
             player.level = 1
+            player.messages = []
             player.attack = 10
             player.score = 0
             player.has_won = False

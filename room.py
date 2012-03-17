@@ -15,7 +15,6 @@ class Room(db.Model):
     tiles = db.ListProperty(int)
     width = db.IntegerProperty()
     free_space = db.ListProperty(int)
-    messages = db.ListProperty(str)
     exits = db.ListProperty(int)
     exit_keys = db.ListProperty(db.Key)
 

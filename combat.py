@@ -86,12 +86,27 @@ if __name__ == '__main__':
 import player
 import monster
 
-def attack(source, target):
+def monster_attack(source, target):
     a = source.attack 
     d = target.attack 
     if randint(0, 50) + a - d > 25:
         target.health -= min(a - d / 2, 4)
         source.health -= min(d - a, 2)
         source.put()
+        target.messages.append("%s hit you." % source.name)
         target.put()
+    target.messages.append("%s missed." % source.name)
+    target.put()
+
+def player_attack(source, target):
+    a = source.attack 
+    d = target.attack 
+    if randint(0, 50) + a - d > 25:
+        target.health -= min(a - d / 2, 4)
+        source.health -= min(d - a, 2)
+        source.messages.append("you hit %s." % target.name)
+        source.put()
+        target.put()
+    source.messages.append("you missed.")
+    target.put()
 

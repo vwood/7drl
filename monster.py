@@ -14,6 +14,7 @@ class Monster(db.Model):
     image = db.IntegerProperty()
     location = db.ReferenceProperty(room.Room)
     health = db.IntegerProperty()
+    attack = db.IntegerProperty()
     is_alive = db.BooleanProperty()
     has_moved = db.BooleanProperty()
     
@@ -29,7 +30,7 @@ def move(monster):
     players = player.Player.all(keys_only=True).filter("location =", monster.location.key())
     if len(players) > 0:
         target = players[randint(0, len(players) - 1)]
-        attack(monster, target)
+        combat.monster_attack(monster, target)
         return
 
     if randint(0,1) == 0:
@@ -40,9 +41,6 @@ def move(monster):
     if exits[target] is not None:
         monster.location = exits[target]
         monster.put()
-
-def attack(monster, target):
-    combat.attack(monster, target)
 
 def generate_new_monster(room):
     m = Monster()
