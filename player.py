@@ -75,7 +75,7 @@ class Attack(base.BaseHandler):
     def get(self):
         player = get_player()
         if player.has_moved:
-            self.redirect('/room?error=You are too tired')
+            self.redirect('/room?last_target=%s&error=You are too tired' % target)
             return
         target = self.request.get('target')
         try:
