@@ -16,16 +16,16 @@ for p in players:
     if p.idle_out > 10 * 2:
         p.is_alive = FALSE
     p.messages.append("")
-    if len(p.messages) > 4:
-        p.messages = p.messages[-4:]
+    if len(p.messages) > 5:
+        p.messages = p.messages[-5:]
     p.put()
 
 players = player.Player.gql("WHERE has_moved = TRUE AND is_alive = TRUE").run()
 for p in players:
     p.has_moved = False
     p.messages.append("")
-    if len(p.messages) > 4:
-        p.messages = p.messages[-4:]
+    if len(p.messages) > 5:
+        p.messages = p.messages[-5:]
     p.put()
 
 # Bring out your dead!

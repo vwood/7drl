@@ -91,7 +91,13 @@ def monster_attack(source, target):
     d = target.attack 
     if randint(0, 50) + a - d > 25:
         target.health -= min(a - d / 2, 4)
+        if target.health < 0:
+            target.is_alive = False
+            target.messages.append("You die.")
         source.health -= min(d - a, 2)
+        if source.health < 0:
+            source.is_alive = False
+            target.messages.append("%s dies." % source.name)
         source.put()
         target.messages.append("%s hit you." % source.name)
         target.put()
@@ -102,14 +108,20 @@ def player_attack(source, target):
     a = source.attack 
     d = target.attack 
     if randint(0, 50) + a - d > 25:
+        source.messages.append("You hit %s." % target.name)
         target.health -= max(a - d / 2, 4)
+        if target.health < 0:
+            target.is_alive = False
+            source.messages.append("%s dies." % target.name)
         source.health -= max(d - a, 2)
-        source.messages.append("you hit %s." % target.name)
+        if source.health < 0:
+            source.is_alive = False
+            source.messages.append("you die.")
         source.messages = source.messages
         source.put()
         target.put()
     else:
-        source.messages.append("you missed.")
+        source.messages.append("You missed.")
         source.messages = source.messages
         target.put()
 
