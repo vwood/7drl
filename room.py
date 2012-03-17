@@ -111,7 +111,7 @@ def generate_room():
         result[y][0] = wall
         result[y][width - 1] = wall
 
-    for x,y in [(x,y) for x in [1,2,4,5] for y in [1,3]]:
+    for x,y in [(x,y) for x in range(1,width-1) for y in range(1,height-1) if x != width/2 and y != height/2]:
         if randint(0, 4) == 0:
             result[y][x] = wall
 

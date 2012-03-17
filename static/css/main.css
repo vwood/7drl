@@ -124,6 +124,7 @@ div.error h2 {
 .mainpanel {
 	color: #fff;
 	background-color: #000;
+	min-height: 500px;
 }
 
 .healthbar {
