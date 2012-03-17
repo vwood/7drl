@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block head %}
+{% endblock %}
+
+{% block nav %}
+{% endblock %}
+
+{% block content %}
+
+<div class="title">
+  <h2>Congratulations, {{ player.name }}, you have won.</h2>
+  <img name="replace_{{ player.image }}" src="/images/Blank.png" />
+  <h4>Final score: {{ player.score }}</h4>
+</div>
+
+<script type="text/javascript">
+  var target = "";
+  var target_img = 26;
+  var width = {{ room.width }};
+  var tiles = [{{ room.tiles|join:"," }}];
+  var free_space = [{{ room.free_space|join:"," }}];
+  var items = [ {% for item in items %} {{ item.image }} {% if not forloop.last %}, {% endif %} {% endfor %} ];
+  var exit_keys = ["{{ room.exit_keys|join:"\", \"" }}"];
+  var exits = [ {{ room.exits|join:"," }} ];
+</script>
+<script type="text/javascript" src="js/room.js"> </script>
+
+{% endblock %}

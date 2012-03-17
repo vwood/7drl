@@ -2,6 +2,7 @@ from google.appengine.api import users
 from google.appengine.ext import db
 
 import base
+import player
 
 class Score(db.Model):
     """Models a highscore."""
@@ -13,8 +14,12 @@ class Score(db.Model):
 
 class Win(base.BaseHandler):
     def get(self):
-        # Check player really has won, calc score + add to highscore + delete player object
-        pass
+        p = player.get_player()
+        if not p.has_won:
+            self.redirect('/room?error=You did not win.')
+            return
+        add_score(p, winning=True)
+        self.render_template('static/html/win.html', {'player':p})
 
 def calculate_score(player, winning):
     score = player.score
