@@ -36,7 +36,10 @@ class Move(base.BaseHandler):
     # GET to workaround browser limitations and avoid further javascript
     def get(self):
         player = get_player()
+
         try:
+            if users.is_current_user_admin():
+                player.has_moved = False
             if player.has_moved:
                 self.redirect('/room?error=You are too tired')
                 return
