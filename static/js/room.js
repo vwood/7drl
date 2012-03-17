@@ -99,3 +99,34 @@ for (i = 0; i < images.length; i++) {
 		result[j].src = "/images/" + images[i];
 	}
 }
+
+function keydown_handler(event) {
+	var key_code = ('which' in event) ? event.which : event.keyCode;
+	switch (key_code) {
+	case 72:
+	case 37:
+	case 65:
+		window.location = '/move?exit=0';
+		return;
+	case 74:
+	case 40:
+	case 83:
+		window.location = '/move?exit=3';
+		return;
+	case 75:
+	case 38:
+	case 87:
+		window.location = '/move?exit=2';
+		return;
+	case 76:
+	case 39:
+	case 68:
+		window.location = '/move?exit=1';
+		return;
+	case 190:
+		window.location = '/move?exit=4';
+		return;
+	}
+}
+
+window.onkeydown=keydown_handler;
