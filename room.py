@@ -31,6 +31,10 @@ def room_key(room_name=None):
 class GetRoom(base.BaseHandler):
     def get(self):
         user = player.get_player()
+        if user.is_alive == False:
+            values = {'player': user, 'room', user.location}
+            self.render_template('static/html/player_dead.html', values)
+
         room = user.location
 
         players = player.Player.gql("WHERE location = :1", room).run()
