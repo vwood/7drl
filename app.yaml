@@ -21,5 +21,9 @@ handlers:
   script: update.py
   login: admin
 
+- url: /update2
+  script: update2.py
+  login: admin
+
 - url: /.*
   script: app.py
