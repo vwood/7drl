@@ -144,3 +144,23 @@ div.error h2 {
 .imgalign {
 	vertical-align:middle;
 }
+
+.top_scores {
+	color: #fff;
+	margin: 10px;
+	padding: 10px;
+	background-color: #000;
+}
+
+div.top_scores div{
+	color: #ff0;
+	text-align: center;
+	margin: 10px;
+	padding: 10px;
+	background-color: #335;
+}
+
+div.top_scores h2{
+	color: #f00;
+}
+

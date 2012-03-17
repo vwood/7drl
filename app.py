@@ -5,6 +5,7 @@
 import urllib
 import wsgiref.handlers
 
+from google.appengine.api import memcache 
 from google.appengine.ext import db 
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp.util import run_wsgi_app
@@ -14,6 +15,7 @@ import room
 import player
 import map
 import debug
+import score
 
 class Play(base.BaseHandler):
     def get(self):
@@ -22,8 +24,10 @@ class Play(base.BaseHandler):
 
 class Index(base.BaseHandler):
     def get(self):
-        rooms = db.GqlQuery("SELECT * FROM Room").fetch(10)
-        values = {'rooms': rooms}
+        top_scores = memcache.get("top_scores")
+        if top_scores is None:
+            memcache.set("top_scores", score.render_top_scores(), 10)
+        values = {'top_scores': top_scores}
         self.render_template('static/html/index.html', values)
 
 application = webapp.WSGIApplication(

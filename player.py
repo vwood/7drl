@@ -48,6 +48,7 @@ class Move(base.BaseHandler):
                     player.put()
                     self.redirect('/win')
                     return
+                player.health = min(100, player.health + 10)
                 player.location = map.get_map(depth + 1).start
             else:
                 player.location = room.Room.get(exit_keys[exits[target_exit]])
@@ -65,6 +66,7 @@ class Attack(base.BaseHandler):
         if player.has_moved:
             self.redirect('/room')
         target = self.request.get('target')
+        ## ERROR: "'Room' object has no attribute 'monster_set'"
         possible_targets = player.location.monster_set.get() 
         if target not in possible_targets:        
             self.error(400)

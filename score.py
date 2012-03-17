@@ -1,7 +1,7 @@
 from google.appengine.api import users
 from google.appengine.ext import db
 
-from base import *
+import base
 
 class Score(db.Model):
     """Models a highscore."""
@@ -38,3 +38,17 @@ def add_score(player, winning = False):
         score.score = score_value
         score.won = winning
         score.put()
+
+def render_top_scores():
+    top_scores = Score.all().order('-score').fetch(10)
+    if len(top_scores) == 0:
+        top_scores = ["<h2>No one :(</h2>"]
+    else:
+        top_scores = ["%s %s as %s <img src=\"replace_%d\" class=\"imgalign\"/> : %s" 
+                      % (score.user.nickname(),
+                         "won" if score.won else "lost",
+                         score.name,
+                         score.image,
+                         score.score)
+                      for score in top_scores]
+    return "<div>%s</div>" % "</div> <div>".join(top_scores)
