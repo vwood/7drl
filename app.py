@@ -26,7 +26,8 @@ class Index(base.BaseHandler):
     def get(self):
         top_scores = memcache.get("top_scores")
         if top_scores is None:
-            memcache.set("top_scores", score.render_top_scores(), 10)
+            top_scores = score.render_top_scores()
+            memcache.set("top_scores", top_scores, 10)
         values = {'top_scores': top_scores}
         self.render_template('static/html/index.html', values)
 
