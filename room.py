@@ -69,25 +69,29 @@ def create_room(map, title=None):
     """Create an actual room object for a map.
     DOES NOT PUT ONTO DATASTORE."""
     room = Room(parent = map, key_name = None)
-    if title is None:
-        title = generate_title()
     room.title, room.width, room.tiles = generate_room()
+    if title is not None:
+        room.title = title
     room.free_space = free_space_list(room.tiles)
     room.exits = [-1, -1, -1, -1, -1]
     room.exit_keys = []
     room.put()
     return room
-    
+
+def generate_title(floor, wall):
+    return "Default Room."
+
 def generate_room():
     "Generate the room layout."
     width, height = 7, 5
 
-    title = "Default Room."
+
     floor = images.floors[randint(0, len(images.floors)-1)]
     wall = images.walls[randint(0, len(images.walls)-1)]
 
     result = [[floor for _ in range(width)] for _ in range(height)]
 
+    # Add walls
     for x in range(width):
         result[0][x] = wall
         result[height - 1][x] = wall
@@ -100,8 +104,23 @@ def generate_room():
         if randint(0, 4) == 0:
             result[y][x] = wall
 
+    # Sometimes, add a splash of a different kind of floor + wall
+    if randint(0,1) == 0:
+        second_floor = images.floors[randint(0, len(images.floors)-1)]
+        second_wall = images.walls[randint(0, len(images.walls)-1)]
+        cx, cy = randint(0, width - 1), randint(0, height - 1)
+        for x,y in [(x,y)
+                    for x in range(max(cx-2,0), min(cx+3,width))
+                    for y in range(max(cy-2,0), min(cy+3,height))]:
+            if randint(0,3) != 0:
+                if result[y][x] == floor:
+                    result[y][x] = second_floor
+                else:
+                    result[y][x] = second_wall
+
     # Flatten tile array
     result = [cell for row in result for cell in row]
+    title = generate_title(floor, wall)
     return (title, width, result)
 
 def link_rooms(room_a, room_b):
