@@ -74,10 +74,10 @@ class Attack(base.BaseHandler):
     # GET to workaround browser limitations and avoid further javascript
     def get(self):
         player = get_player()
+        target = self.request.get('target')
         if player.has_moved:
             self.redirect('/room?last_target=%s&error=You are too tired' % target)
             return
-        target = self.request.get('target')
         try:
             m = monster.Monster.get(target)
             if m is None or m.location.key() != player.location.key():
