@@ -35,7 +35,7 @@ def add_score(player, winning = False):
     if score_value <= 0:
         return
     top_scores = Score.all().order('-score').fetch(10)
-    if score > top_scores[-1].score:
+    if len(top_scores) < 10 or score > top_scores[-1].score:
         score = Score()
         score.name = player.name
         score.user = player.user

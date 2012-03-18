@@ -5,7 +5,7 @@ import room
 import player
 
 def update2():
-    max_monsters = 30
+    max_monsters = 20
 
     monster_count = monster.Monster.all(keys_only=True).count(max_monsters)
 
