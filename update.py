@@ -30,14 +30,6 @@ def update():
             p.messages = p.messages[-5:]
         p.put()
 
-    # conserve resources when no one is on
-    if not have_players:
-        return
-
-    monsters = monster.Monster.gql("WHERE is_alive = TRUE").run()
-    for m in monsters:
-        monster.move(m)
-
     # Bring out your dead!
     dead = player.Player.gql("WHERE is_alive = FALSE").run()
     for dodo in dead:
@@ -47,6 +39,14 @@ def update():
         except NotSavedError:
             # Guess it was just a ghost
             pass
+
+    # conserve resources when no one is on
+    if not have_players:
+        return
+
+    monsters = monster.Monster.gql("WHERE is_alive = TRUE").run()
+    for m in monsters:
+        monster.move(m)
 
     dead = monster.Monster.gql("WHERE is_alive = FALSE").run()
     for dodo in dead:

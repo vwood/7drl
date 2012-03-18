@@ -94,11 +94,11 @@ def monster_attack(source, target):
     a = source.attack 
     d = target.attack 
     if randint(0, 50) + a - d/2 > 25:
-        target.health -= min(a - d / 2, 4)
+        target.health -= max(a - d / 2, 4)
         if target.health < 0:
             target.is_alive = False
             target.messages.append("You die.")
-        source.health -= min(d - a, 2)
+        source.health -= max(d - a, 2)
         if source.health < 0:
             source.is_alive = False
             target.messages.append("%s dies." % source.name)
