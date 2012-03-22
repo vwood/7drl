@@ -2,6 +2,8 @@
 # Update
 #
 
+from google.appengine.ext import db
+
 import score
 import player
 import monster
@@ -36,7 +38,7 @@ def update():
         try:
             score.add_score(dodo)
             dodo.delete()
-        except NotSavedError:
+        except db.NotSavedError:
             # Guess it was just a ghost
             pass
 
@@ -52,7 +54,7 @@ def update():
     for dodo in dead:
         try:
             dodo.delete()
-        except NotSavedError:
+        except db.NotSavedError:
             # Guess it was just a ghost
             pass
 
