@@ -1,5 +1,5 @@
 total_storage_limit: 10M
 queue:
 - name: tick
-  rate: 6/m
+  rate: 12/m
   bucket_size: 1
