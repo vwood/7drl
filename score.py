@@ -49,7 +49,7 @@ def render_top_scores():
     if len(top_scores) == 0:
         top_scores = ["<h2>No one :(</h2>"]
     else:
-        top_scores = ["%s %s as %s <img name=\"replace_%s\" src=\"images/blank.png\" class=\"imgalign\"\/> : %s" 
+        top_scores = ["%s %s as %s <img name=\"replace_%s\" src=\"images/Blank.png\" class=\"imgalign\"\/> : %s" 
                       % (score.user.nickname(),
                          "won" if score.won else "lost",
                          score.name,
